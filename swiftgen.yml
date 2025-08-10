@@ -1,0 +1,19 @@
+fonts:
+  inputs: BBW/Resources/Fonts
+  outputs:
+    templateName: swift5
+    output: BBW/SwiftGen/Fonts.swift
+    
+strings:
+  inputs: BBW/Resources/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: BBW/SwiftGen/Strings.swift
+      
+xcassets:
+    inputs:
+        - BBW/Resources/Assets.xcassets
+        - BBW/Resources/Colors.xcassets
+    outputs:
+        templateName: swift5
+        output: BBW/SwiftGen/Assets.swift

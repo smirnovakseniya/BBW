@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "visualeffectview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/efremidze/VisualEffectView",
+      "state" : {
+        "revision" : "2778ef368cfdaab32a7548d0e4b73fe4e0ff6fd6",
+        "version" : "5.0.3"
+      }
+    }
+  ],
+  "version" : 2
+}

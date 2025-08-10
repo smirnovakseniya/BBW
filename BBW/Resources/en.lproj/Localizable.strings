@@ -1,0 +1,42 @@
+//Onboarding
+//Welcome
+"onboarding_welcome_title1" = "Welcome to the best BBW chat room";
+"onboarding_welcome_title2" = "Let's create your";
+"onboarding_welcome_title3" = "Perfect girlfriend";
+"onboarding_welcome_button" = "Let's begin!";
+//Name
+"onboarding_name_title" = "Pick your girlfriend's name";
+"onboarding_name_placeholder" = "Name";
+"onboarding_name_button" = "Next";
+"onboarding_name_random_button" = "Leave random";
+//Height N Weight
+"onboarding_height_n_weight_title" = "Her Height and Weight";
+"onboarding_height_n_weight_height_title" = "Height (cm)";
+"onboarding_height_n_weight_weight_title" = "Weight (kg)";
+"onboarding_height_n_weight_button" = "Next";
+//Age
+"onboarding_age_title" = "Her Age";
+"onboarding_age_picker_title" = "Age (years)";
+"onboarding_age_button" = "Next";
+//Nationality
+"onboarding_nationality_title" = "Nationality";
+"onboarding_nationality_description" = "Select now, and change in the app if desired";
+"onboarding_nationality_european" = "european";
+"onboarding_nationality_asian" = "asian";
+"onboarding_nationality_afro" = "afro";
+"onboarding_nationality_arab" = "arab";
+"onboarding_nationality_latina" = "latina";
+"onboarding_nationality_indian" = "indian";
+//Nationality
+"onboarding_clothing_title" = "Style in clothing";
+"onboarding_clothing_casual" = "casual";
+"onboarding_clothing_sport" = "sport";
+"onboarding_clothing_office" = "office";
+"onboarding_clothing_feminine" = "feminine";
+"onboarding_clothing_uniform" = "uniform";
+"onboarding_clothing_underwear" = "underwear";
+//Figure
+"onboarding_figure_title" = "How does she feel about her figure?";
+"onboarding_figure_conceals" = "Conceals";
+"onboarding_figure_emphasizes" = "Emphasizes";
+
