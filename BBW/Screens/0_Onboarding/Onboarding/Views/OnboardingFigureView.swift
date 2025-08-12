@@ -2,17 +2,28 @@ import SwiftUI
 
 struct OnboardingFigureView: View {
     let model: OnboardingFigure
-    var action: ((_ type: FigureType) -> ())?
+    var action: ((_ type: OnboardingFigureCell) -> ())?
+    
+    var leftData: OnboardingFigureCell
+    var rightData: OnboardingFigureCell
+    
+    init(model: OnboardingFigure, action: ((_: OnboardingFigureCell) -> Void)? = nil) {
+        self.model = model
+        self.action = action
+        
+        leftData = model.list[0]
+        rightData = model.list[1]
+    }
     
     var body: some View {
         HStack(spacing: 8) {
-            OnboardingFigureCellView(model: model.concealsData)
+            OnboardingFigureCellView(model: leftData)
                 .onTapGesture {
-                    action?(model.concealsData.type)
+                    action?(leftData)
                 }
-            OnboardingFigureCellView(model: model.emphasizesData)
+            OnboardingFigureCellView(model: rightData)
                 .onTapGesture {
-                    action?(model.emphasizesData.type)
+                    action?(rightData)
                 }
         }
         .frame(maxHeight: .infinity, alignment: .top)

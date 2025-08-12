@@ -56,8 +56,9 @@ struct OnboardingHPickerView: View {
                     .padding(.horizontal, (UIScreen.main.bounds.width / 2) - 50)
                     .onPreferenceChange(ElementPositionKey.self) { positions in
                         lastPositions = positions
-                        if !isDragging {
-                            updateSelectedToClosest(positions: positions)
+                        if let closest = closestElement(in: positions), selectedValue != closest.id {
+                            selectedValue = closest.id
+                            onValueChange(closest.id)
                         }
                     }
                 }

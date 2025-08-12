@@ -61,7 +61,7 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
     private func titleForData(for data: OnboardingData) -> some View {
         let title: String? = {
             switch data {
-            case .welcome(_):
+            case .welcome(_), .perfectLook(_):
                 return nil
             case let .name(model as Titled),
                 let .weightAHeight(model as Titled),
@@ -81,7 +81,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                     .weightAHeight(_),
                     .age(_),
                     .clothing(_),
-                    .figure(_):
+                    .figure(_),
+                    .perfectLook(_):
                 return nil
             case let .nationality(model as TitledDescription),
                 let .bestPhoto(model as TitledDescription):
@@ -130,21 +131,23 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                 intent.updateCommonData(for: .age(agePickerValue))
             }
         case .nationality(let model):
-            OnboardingNationalityView(model: model) { type in
-                intent.updateCommonData(for: .nationality(type))
+            OnboardingNationalityView(model: model) { data in
+                intent.updateCommonData(for: .nationality(data))
             }
         case .clothing(let model):
-            OnboardingClothingView(model: model) { type in
-                intent.updateCommonData(for: .clothing(type))
+            OnboardingClothingView(model: model) { data in
+                intent.updateCommonData(for: .clothing(data))
             }
         case .figure(let model):
-            OnboardingFigureView(model: model) { type in
-                intent.updateCommonData(for: .figure(type))
+            OnboardingFigureView(model: model) { data in
+                intent.updateCommonData(for: .figure(data))
             }
         case .bestPhoto(let model):
-            OnboardingBestPhotoView(model: model.photos) { cell in
-                intent.updateCommonData(for: .bestPhoto(cell))
+            OnboardingBestPhotoView(model: model.photos) { data in
+                intent.updateCommonData(for: .bestPhoto(data))
             }
+        case .perfectLook(let model):
+            OnboardingPerfectLookView(model: model, userData: intent.onboardingData)
         }
     }
     
@@ -152,9 +155,10 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
     private func buttonForData(for data: OnboardingData, isDisabled: Binding<Bool>) -> some View {
         switch data {
         case let .welcome(model as TitledButton),
-             let .weightAHeight(model as TitledButton),
-             let .age(model as TitledButton),
-            let .bestPhoto(model as TitledButton):
+            let .weightAHeight(model as TitledButton),
+            let .age(model as TitledButton),
+            let .bestPhoto(model as TitledButton),
+            let .perfectLook(model as TitledButton):
             OnboardingButton(
                 isDisabled: false,
                 text: model.buttonTitle
@@ -184,20 +188,21 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
     
     @ViewBuilder
     private func backgroundImageName(for data: OnboardingData) -> some View {
-        switch data {
-        case .welcome(let model):
-            Image(model.imageName)
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-        case .name(_),
-             .weightAHeight(_),
-             .age(_),
-             .nationality(_),
-             .clothing(_),
-             .figure(_),
-             .bestPhoto(_):
-            EmptyView()
+            switch data {
+            case let .welcome(model as BackgroundImage),
+                let .perfectLook(model as BackgroundImage):
+                Image(model.backgroundImage)
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+            case .name(_),
+                    .weightAHeight(_),
+                    .age(_),
+                    .nationality(_),
+                    .clothing(_),
+                    .figure(_),
+                    .bestPhoto(_):
+                EmptyView()
         }
     }
 }

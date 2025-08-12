@@ -43,4 +43,11 @@
 "onboarding_best_photo_title" = "Choose the best photo";
 "onboarding_best_photo_description" = "Your choice will help us to generate the most attractive appearance for you";
 "onboarding_best_photo_button" = "Next";
-
+//Perfect look
+"onboarding_perfect_look_title" = "Create the perfect look";
+"onboarding_perfect_look_years" = "Years";
+"onboarding_perfect_look_weight" = "Weight";
+"onboarding_perfect_look_progress_view_1" = "Query Processing";
+"onboarding_perfect_look_progress_view_2" = "Visualize high quality images";
+"onboarding_perfect_look_progress_view_3" = "Create videos and voiceovers";
+"onboarding_perfect_look_button" = "Next";

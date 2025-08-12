@@ -8,6 +8,8 @@ protocol OnboardingIntentProtocol {
 }
 
 protocol OnboardingActionProtocol {
+    var onboardingData: OnboardingFinalModel { get }
+    
     func nextStep()
     func completeOnboarding()
     func updateCommonData(for type: OnboardingFields)

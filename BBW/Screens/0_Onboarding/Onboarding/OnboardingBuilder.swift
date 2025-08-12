@@ -6,9 +6,9 @@ struct OnboardingFinalModel {
     var height: Int?
     var weight: Int?
     var age: Int?
-    var nationality: NationalityType?
-    var clothing: ClothingType?
-    var figure: FigureType?
+    var nationality: OnboardingNationalityCell?
+    var clothing: OnboardingClothingCell?
+    var figure: OnboardingFigureCell?
     var bestPhoto: OnboardingBestPhotoCell?
 }
 
@@ -17,9 +17,9 @@ enum OnboardingFields {
     case height(Int)
     case weight(Int)
     case age(Int)
-    case nationality(NationalityType)
-    case clothing(ClothingType)
-    case figure(FigureType)
+    case nationality(OnboardingNationalityCell)
+    case clothing(OnboardingClothingCell)
+    case figure(OnboardingFigureCell)
     case bestPhoto(OnboardingBestPhotoCell)
 }
 
@@ -35,12 +35,14 @@ enum OnboardingData {
     case clothing(OnboardingClothing)
     case figure(OnboardingFigure)
     case bestPhoto(OnboardingBestPhoto)
+    case perfectLook(OnboardingPerfectLook)
 }
 
 extension OnboardingData {
     var index: Int? {
         switch self {
-        case .welcome: return nil
+        case .welcome, .perfectLook:
+            return nil
         case let .name(data as StepIndexable),
             let .weightAHeight(data as StepIndexable),
             let .age(data as StepIndexable),
@@ -75,14 +77,18 @@ protocol TitledImageCell {
     var title: String { get }
 }
 
+protocol BackgroundImage {
+    var backgroundImage: String { get }
+}
+
 // MARK:  Onboarding Steps
 
 // Welcome Step
-struct OnboardingWelcome: TitledButton {
+struct OnboardingWelcome: TitledButton, BackgroundImage {
     let title1: String
     let title2: String
     let title3: String
-    let imageName: String
+    let backgroundImage: String
     let buttonTitle: String
 }
 
@@ -193,8 +199,7 @@ struct OnboardingFigureCell: TitledImageCell {
 struct OnboardingFigure: StepIndexable, Titled {
     let index: Int
     let title: String
-    let concealsData: OnboardingFigureCell
-    let emphasizesData: OnboardingFigureCell
+    let list: [OnboardingFigureCell]
 }
 
 // Best photo
@@ -209,6 +214,16 @@ struct OnboardingBestPhoto: StepIndexable, Titled, TitledButton, TitledDescripti
     let title: String
     let description: String
     let photos: [OnboardingBestPhotoCell]
+    let buttonTitle: String
+}
+
+// Perfect look
+struct OnboardingPerfectLook: TitledButton, BackgroundImage {
+    let title: String
+    let backgroundImage: String
+    let ageTitle: String
+    let weightTitle: String
+    let progressViewTitle: [String]
     let buttonTitle: String
 }
 

@@ -3,7 +3,7 @@ import SwiftUI
 struct OnboardingClothingView: View {
     let model: OnboardingClothing
     
-    var action: ((_ type: ClothingType) -> ())?
+    var action: ((_ type: OnboardingClothingCell) -> ())?
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -17,7 +17,7 @@ struct OnboardingClothingView: View {
                 ForEach(model.list, id: \.id) { item in
                     OnboardingCellView(model: item)
                         .onTapGesture {
-                            action?(item.type)
+                            action?(item)
                         }
                 }
             }
