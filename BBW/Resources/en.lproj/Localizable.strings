@@ -39,4 +39,8 @@
 "onboarding_figure_title" = "How does she feel about her figure?";
 "onboarding_figure_conceals" = "Conceals";
 "onboarding_figure_emphasizes" = "Emphasizes";
+//Best photo
+"onboarding_best_photo_title" = "Choose the best photo";
+"onboarding_best_photo_description" = "Your choice will help us to generate the most attractive appearance for you";
+"onboarding_best_photo_button" = "Next";
 

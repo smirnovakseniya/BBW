@@ -45,6 +45,8 @@ extension OnboardingIntent: OnboardingActionProtocol {
         case .figure(let data):
             onboardingData.figure = data
             nextStep()
+        case .bestPhoto(let data):
+            onboardingData.bestPhoto = data
         }
         print("## onboardingData: \(onboardingData)")
     }
@@ -53,7 +55,7 @@ extension OnboardingIntent: OnboardingActionProtocol {
         switch type {
         case .name(_):
             return onboardingData.name.isEmpty
-        case .height(_), .weight(_), .age(_), .nationality(_), .clothing(_), .figure(_):
+        case .height(_), .weight(_), .age(_), .nationality(_), .clothing(_), .figure(_), .bestPhoto(_):
             return true
         }
     }

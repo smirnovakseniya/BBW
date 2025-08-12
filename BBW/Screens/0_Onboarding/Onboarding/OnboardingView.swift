@@ -68,7 +68,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                 let .age(model as Titled),
                 let .nationality(model as Titled),
                 let .clothing(model as Titled),
-                let .figure(model as Titled):
+                let .figure(model as Titled),
+                let .bestPhoto(model as Titled):
                 return model.title
             }
         }()
@@ -82,7 +83,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                     .clothing(_),
                     .figure(_):
                 return nil
-            case let .nationality(model):
+            case let .nationality(model as TitledDescription),
+                let .bestPhoto(model as TitledDescription):
                 return model.description
             }
         }()
@@ -139,6 +141,10 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
             OnboardingFigureView(model: model) { type in
                 intent.updateCommonData(for: .figure(type))
             }
+        case .bestPhoto(let model):
+            OnboardingBestPhotoView(model: model.photos) { cell in
+                intent.updateCommonData(for: .bestPhoto(cell))
+            }
         }
     }
     
@@ -147,7 +153,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
         switch data {
         case let .welcome(model as TitledButton),
              let .weightAHeight(model as TitledButton),
-             let .age(model as TitledButton):
+             let .age(model as TitledButton),
+            let .bestPhoto(model as TitledButton):
             OnboardingButton(
                 isDisabled: false,
                 text: model.buttonTitle
@@ -188,7 +195,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
              .age(_),
              .nationality(_),
              .clothing(_),
-             .figure(_):
+             .figure(_),
+             .bestPhoto(_):
             EmptyView()
         }
     }

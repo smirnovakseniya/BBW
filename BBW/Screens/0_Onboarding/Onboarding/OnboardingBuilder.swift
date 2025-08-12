@@ -9,6 +9,7 @@ struct OnboardingFinalModel {
     var nationality: NationalityType?
     var clothing: ClothingType?
     var figure: FigureType?
+    var bestPhoto: OnboardingBestPhotoCell?
 }
 
 enum OnboardingFields {
@@ -19,6 +20,7 @@ enum OnboardingFields {
     case nationality(NationalityType)
     case clothing(ClothingType)
     case figure(FigureType)
+    case bestPhoto(OnboardingBestPhotoCell)
 }
 
 struct OnboardingInputData {}
@@ -32,6 +34,7 @@ enum OnboardingData {
     case nationality(OnboardingNationality)
     case clothing(OnboardingClothing)
     case figure(OnboardingFigure)
+    case bestPhoto(OnboardingBestPhoto)
 }
 
 extension OnboardingData {
@@ -39,11 +42,12 @@ extension OnboardingData {
         switch self {
         case .welcome: return nil
         case let .name(data as StepIndexable),
-             let .weightAHeight(data as StepIndexable),
-             let .age(data as StepIndexable),
-             let .nationality(data as StepIndexable),
-             let .clothing(data as StepIndexable),
-            let .figure(data as StepIndexable):
+            let .weightAHeight(data as StepIndexable),
+            let .age(data as StepIndexable),
+            let .nationality(data as StepIndexable),
+            let .clothing(data as StepIndexable),
+            let .figure(data as StepIndexable),
+            let .bestPhoto(data as StepIndexable):
             return data.index
         }
     }
@@ -52,6 +56,10 @@ extension OnboardingData {
 // MARK:  Protocols
 protocol Titled {
     var title: String { get }
+}
+
+protocol TitledDescription {
+    var description: String { get }
 }
 
 protocol StepIndexable {
@@ -139,7 +147,7 @@ struct OnboardingNationalityCell: TitledImageCell {
     let title: String
 }
 
-struct OnboardingNationality: StepIndexable, Titled {
+struct OnboardingNationality: StepIndexable, Titled, TitledDescription {
     let index: Int
     let title: String
     let description: String
@@ -187,6 +195,21 @@ struct OnboardingFigure: StepIndexable, Titled {
     let title: String
     let concealsData: OnboardingFigureCell
     let emphasizesData: OnboardingFigureCell
+}
+
+// Best photo
+struct OnboardingBestPhotoCell: Identifiable {
+    var id = UUID()
+    var index: Int
+    let image: String
+}
+
+struct OnboardingBestPhoto: StepIndexable, Titled, TitledButton, TitledDescription {
+    let index: Int
+    let title: String
+    let description: String
+    let photos: [OnboardingBestPhotoCell]
+    let buttonTitle: String
 }
 
 // MARK:  Builder
