@@ -13,7 +13,6 @@ protocol OnboardingActionProtocol {
     func nextStep()
     func completeOnboarding()
     func updateCommonData(for type: OnboardingFields)
-    func isButtonEnabled(for type: OnboardingFields) -> Bool
     func handleRandomName() 
 }
 

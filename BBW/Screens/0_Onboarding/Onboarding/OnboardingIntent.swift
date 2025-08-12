@@ -47,17 +47,15 @@ extension OnboardingIntent: OnboardingActionProtocol {
             nextStep()
         case .bestPhoto(let data):
             onboardingData.bestPhoto = data
+        case .talkAbout(let data):
+            if onboardingData.talkAbout.contains(data) {
+                onboardingData.talkAbout.remove(data)
+            } else {
+                onboardingData.talkAbout.insert(data)
+            }
+            model.handleIsDisabledButton(onboardingData.talkAbout.isEmpty)
         }
         print("## onboardingData: \(onboardingData)")
-    }
-    
-    func isButtonEnabled(for type: OnboardingFields) -> Bool {
-        switch type {
-        case .name(_):
-            return onboardingData.name.isEmpty
-        case .height(_), .weight(_), .age(_), .nationality(_), .clothing(_), .figure(_), .bestPhoto(_):
-            return true
-        }
     }
     
     func nextStep() {

@@ -10,6 +10,7 @@ struct OnboardingFinalModel {
     var clothing: OnboardingClothingCell?
     var figure: OnboardingFigureCell?
     var bestPhoto: OnboardingBestPhotoCell?
+    var talkAbout: Set<OnboardingTalkAboutCell> = []
 }
 
 enum OnboardingFields {
@@ -21,6 +22,7 @@ enum OnboardingFields {
     case clothing(OnboardingClothingCell)
     case figure(OnboardingFigureCell)
     case bestPhoto(OnboardingBestPhotoCell)
+    case talkAbout(OnboardingTalkAboutCell)
 }
 
 struct OnboardingInputData {}
@@ -36,6 +38,7 @@ enum OnboardingData {
     case figure(OnboardingFigure)
     case bestPhoto(OnboardingBestPhoto)
     case perfectLook(OnboardingPerfectLook)
+    case talkAbout(OnboardingTalkAbout)
 }
 
 extension OnboardingData {
@@ -49,7 +52,8 @@ extension OnboardingData {
             let .nationality(data as StepIndexable),
             let .clothing(data as StepIndexable),
             let .figure(data as StepIndexable),
-            let .bestPhoto(data as StepIndexable):
+            let .bestPhoto(data as StepIndexable),
+            let .talkAbout(data as StepIndexable):
             return data.index
         }
     }
@@ -224,6 +228,34 @@ struct OnboardingPerfectLook: TitledButton, BackgroundImage {
     let ageTitle: String
     let weightTitle: String
     let progressViewTitle: [String]
+    let buttonTitle: String
+}
+
+// Talk about
+enum TalkAboutStyle {
+    case justTalkin
+    case makeFriends
+    case confidence
+    case romance
+    case relationship
+    case flirt
+    case rolePlaying
+    case psychology
+    case support
+    case problemsInLife
+}
+
+struct OnboardingTalkAboutCell: Hashable {
+    var id = UUID()
+    let type: TalkAboutStyle
+    let title: String
+    let image: String
+}
+
+struct OnboardingTalkAbout: StepIndexable, Titled, TitledButton {
+    let index: Int
+    let title: String
+    let list: [OnboardingTalkAboutCell]
     let buttonTitle: String
 }
 

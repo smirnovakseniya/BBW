@@ -51,3 +51,17 @@
 "onboarding_perfect_look_progress_view_2" = "Visualize high quality images";
 "onboarding_perfect_look_progress_view_3" = "Create videos and voiceovers";
 "onboarding_perfect_look_button" = "Next";
+//Talk about
+"onboarding_talk_about_title" = "What do you wanna talk about?";
+"onboarding_talk_about_cell_1" = "Just talkin";
+"onboarding_talk_about_cell_2" = "Make friends";
+"onboarding_talk_about_cell_3" = "Confidence";
+"onboarding_talk_about_cell_4" = "Romance";
+"onboarding_talk_about_cell_5" = "Relationship";
+"onboarding_talk_about_cell_6" = "Flirt";
+"onboarding_talk_about_cell_7" = "Role-playing";
+"onboarding_talk_about_cell_8" = "Psychology";
+"onboarding_talk_about_cell_9" = "Support";
+"onboarding_talk_about_cell_10" = "Problems in life";
+"onboarding_talk_about_button" = "Next";
+

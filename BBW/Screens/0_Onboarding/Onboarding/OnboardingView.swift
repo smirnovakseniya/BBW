@@ -69,7 +69,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                 let .nationality(model as Titled),
                 let .clothing(model as Titled),
                 let .figure(model as Titled),
-                let .bestPhoto(model as Titled):
+                let .bestPhoto(model as Titled),
+                let .talkAbout(model as Titled):
                 return model.title
             }
         }()
@@ -82,7 +83,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                     .age(_),
                     .clothing(_),
                     .figure(_),
-                    .perfectLook(_):
+                    .perfectLook(_),
+                    .talkAbout(_):
                 return nil
             case let .nationality(model as TitledDescription),
                 let .bestPhoto(model as TitledDescription):
@@ -148,6 +150,10 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
             }
         case .perfectLook(let model):
             OnboardingPerfectLookView(model: model, userData: intent.onboardingData)
+        case .talkAbout(let model):
+            OnboardingTalkAboutView(model: model) { data in
+                intent.updateCommonData(for: .talkAbout(data))
+            }
         }
     }
     
@@ -183,6 +189,13 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
             }
         case .nationality(_), .clothing(_), .figure(_):
             EmptyView()
+            case let .talkAbout(model as TitledButton):
+            OnboardingButton(
+                isDisabled: isDisabled.wrappedValue,
+                text: model.buttonTitle
+            ) {
+                intent.nextStep()
+            }
         }
     }
     
@@ -201,7 +214,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                     .nationality(_),
                     .clothing(_),
                     .figure(_),
-                    .bestPhoto(_):
+                    .bestPhoto(_),
+                    .talkAbout(_):
                 EmptyView()
         }
     }
