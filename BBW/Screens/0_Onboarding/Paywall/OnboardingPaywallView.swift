@@ -15,7 +15,7 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
                 .foregroundColor(Asset.Colors._000000.swiftUIColor)
                 .padding(.bottom, 16)
             
-            VStack(spacing: 8) {
+            VStack(alignment: .leading, spacing: 8) {
                 ForEach(model.data.features, id: \.id) { item in
                     HStack(spacing: 10) {
                         Text(item.emoji)
@@ -47,7 +47,7 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
                     .resizable()
                     .frame(width: 20, height: 20)
                     .scaledToFill()
-                Text(model.data.title)
+                Text(model.data.description)
                     .font(FontFamily.SFProRounded.regular.swiftUIFont(size: 14))
                     .foregroundColor(Asset.Colors._000000.swiftUIColor)
             }
@@ -60,6 +60,18 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
                 
             }
             .padding(.bottom, 40)
+            .overlay(
+                HStack(spacing: 32) {
+                    Text(model.data.moreInfoViewData.termsOfUse)
+                    Text(model.data.moreInfoViewData.privacyPolice)
+                    Text(model.data.moreInfoViewData.restore)
+                }
+                .underline()
+                .font(FontFamily.SFProRounded.regular.swiftUIFont(size: 12))
+                .foregroundColor(Asset.Colors._000000.swiftUIColor.opacity(0.6))
+                .offset(y: 68 / 2)
+                .frame(maxWidth: .infinity)
+            )
         }
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -82,27 +94,29 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
             }
         )
         .navigationBarBackButtonHidden()
-        .overlay {
+        .overlay(
             Button(action: {
                 print("Tap")
             }) {
                 Image(systemName: "multiply")
                     .resizable()
                     .foregroundColor(Asset.Colors.fff0Fa.swiftUIColor)
-                    .frame(width: 24, height: 24)
+                    .frame(width: 13, height: 13)
                     .scaledToFit()
             }
-            .padding(.leading, 8)
-            .padding(.top, 40)
-            .frame(width: 32, height: 32)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        }
+                .frame(width: 32, height: 32)
+                .padding(.leading, 12)
+                .padding(.top, 20)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        )
         
         .onAppear {
             intent.viewOnAppear()
         }
     }
 }
+
+//MARK: Subviews
 
 private struct PaywallButtonView: View {
     @Binding var isSelectedType: OnboardingPaywallButtonType
@@ -138,7 +152,7 @@ private struct PaywallButtonView: View {
                 blurRadius: 10,
                 scale: 1
             )
-                .clipShape(cornerShape)
+            .clipShape(cornerShape)
         )
         .overlay(
             cornerShape
