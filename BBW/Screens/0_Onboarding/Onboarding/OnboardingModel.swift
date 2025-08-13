@@ -10,14 +10,14 @@ final class OnboardingModel: OnboardingModelStatePotocol {
 //            backgroundImage: Asset.Assets.imgOnboardingWelcomeBack.name,
 //            buttonTitle: L10n.onboardingWelcomeButton
 //        )),
-//        .name(.init(
-//            index: 1,
-//            title: L10n.onboardingNameTitle,
-//            placeholder: L10n.onboardingNamePlaceholder,
-//            text: "",
-//            buttonTitle: L10n.onboardingNameButton,
-//            randomButtonTitle: L10n.onboardingNameRandomButton
-//        )),
+        .name(.init(
+            index: 1,
+            title: L10n.onboardingNameTitle,
+            placeholder: L10n.onboardingNamePlaceholder,
+            text: "",
+            buttonTitle: L10n.onboardingNameButton,
+            randomButtonTitle: L10n.onboardingNameRandomButton
+        )),
 //        .weightAHeight(.init(
 //            index: 2,
 //            title: L10n.onboardingHeightNWeightTitle,
@@ -154,7 +154,7 @@ final class OnboardingModel: OnboardingModelStatePotocol {
 //        )),
 //        .perfectLook(.init(
 //            title: L10n.onboardingPerfectLookTitle,
-//            backgroundImage: Asset.Assets.imgOnboardingPerfectLook.name,
+//            backgroundImage: Asset.Assets.imgOnboardingBg.name,
 //            ageTitle: L10n.onboardingPerfectLookYears,
 //            weightTitle: L10n.onboardingPerfectLookWeight,
 //            progressViewTitle: [
@@ -240,19 +240,31 @@ final class OnboardingModel: OnboardingModelStatePotocol {
 //                    title: L10n.onboardingPurposes4Title,
 //                    description: L10n.onboardingPurposes4Description
 //                )
-        //            ],
-        //            buttonTitle: L10n.onboardingPurposesButton
-        //        )),
-        .finish(.init(
-            title: L10n.onboardingFinishTitle,
-            backgroundImage: Asset.Assets.imgOnboardingFinish.name,
-           image: Asset.Assets.imgOnboardingFinishImage.name,
-            progressViewTitle: [
-                L10n.onboardingFinishProgressView1,
-                L10n.onboardingFinishProgressView2,
-                L10n.onboardingFinishProgressView3
+//                    ],
+//                    buttonTitle: L10n.onboardingPurposesButton
+//                )),
+//        .finish(.init(
+//            title: L10n.onboardingFinishTitle,
+//            backgroundImage: Asset.Assets.imgOnboardingBg.name,
+//           image: Asset.Assets.imgOnboardingFinishImage.name,
+//            progressViewTitle: [
+//                L10n.onboardingFinishProgressView1,
+//                L10n.onboardingFinishProgressView2,
+//                L10n.onboardingFinishProgressView3
+//            ],
+//            buttonTitle: L10n.onboardingFinishButton
+//        )),
+        .girlIntro(.init(
+            backgroundImage: Asset.Assets.imgOnboardingGirl.name,
+            title: L10n.onboardingGirlIntroIAm,
+            emoji: "🩷",
+            list: [
+                L10n.onboardingGirlIntro1,
+                L10n.onboardingGirlIntro2,
+                L10n.onboardingGirlIntro3
             ],
-            buttonTitle: L10n.onboardingFinishButton
+            description: L10n.onboardingGirlIntroDescription,
+            buttonTitle: L10n.onboardingGirlIntroButton
         ))
     ]
     

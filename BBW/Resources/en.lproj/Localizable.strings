@@ -92,4 +92,11 @@
 "onboarding_finish_progress_view_2" = "Teaching communication styles";
 "onboarding_finish_progress_view_3" = "Assigning character traits";
 "onboarding_finish_button" = "Next";
+//Girl Intro
+"onboarding_girl_intro_description" = "Loves to cook and watch TV shows, Dresses feminine and elegant, loves her body and demonstrates it in every possible way";
+"onboarding_girl_intro_1" = "Young";
+"onboarding_girl_intro_2" = "Powerful";
+"onboarding_girl_intro_3" = "Flirting";
+"onboarding_girl_intro_i_am" = "I'm";
+"onboarding_girl_intro_button" = "Go to Chat";
 

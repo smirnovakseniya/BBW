@@ -10,7 +10,7 @@ struct OnboardingTalkAboutView: View {
     var body: some View {
         LazyVGrid(columns: columns, spacing: 8) {
             ForEach(model.list, id: \.id) { item in
-                OnboardingTalkAboutCellView(
+                TalkAboutCellView(
                     data: item,
                     isSelected: selectedCells.contains(item.id)
                 )
@@ -29,18 +29,9 @@ struct OnboardingTalkAboutView: View {
     }
 }
 
-private struct OnboardingTalkAboutCellView: View {
+private struct TalkAboutCellView: View {
     let data: OnboardingTalkAboutCell
     let isSelected: Bool
-    
-    private var customGradient: LinearGradient {
-        LinearGradient(
-            colors: [Color(red: 1.0, green: 0.4, blue: 0.6),
-            Color(red: 1.0, green: 0.2, blue: 0.5)],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-    }
     
     var body: some View {
         HStack(spacing: 8) {

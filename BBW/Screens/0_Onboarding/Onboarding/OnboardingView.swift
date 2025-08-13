@@ -61,7 +61,7 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
     private func titleForData(for data: OnboardingData) -> some View {
         let title: String? = {
             switch data {
-            case .welcome, .perfectLook, .finish:
+            case .welcome, .perfectLook, .finish, .girlIntro:
                 return nil
             case let .name(model as Titled),
                 let .weightAHeight(model as Titled),
@@ -89,7 +89,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                     .talkAbout,
                     .character,
                     .purposes,
-                    .finish:
+                    .finish,
+                    .girlIntro:
                 return nil
             case let .nationality(model as TitledDescription),
                 let .bestPhoto(model as TitledDescription):
@@ -167,6 +168,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
             OnboardingPurposesView(model: model)
         case .finish(let model):
             OnboardingFinishView(model: model)
+        case .girlIntro(let model):
+            OnboardingGirlsIntroView(model: model, name: intent.onboardingData.name)
         }
     }
     
@@ -180,7 +183,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
             let .perfectLook(model as TitledButton),
             let .character(model as TitledButton),
             let .purposes(model as TitledButton),
-            let .finish(model as TitledButton):
+            let .finish(model as TitledButton),
+            let .girlIntro(model as TitledButton):
             OnboardingButton(
                 isDisabled: false,
                 text: model.buttonTitle
@@ -220,7 +224,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
         switch data {
         case let .welcome(model as BackgroundImage),
             let .perfectLook(model as BackgroundImage),
-            let .finish(model as BackgroundImage):
+            let .finish(model as BackgroundImage),
+            let .girlIntro(model as BackgroundImage):
             Image(model.backgroundImage)
                 .resizable()
                 .scaledToFill()

@@ -63,12 +63,13 @@ enum OnboardingData {
     case character(OnboardingCharacter)
     case purposes(OnboardingPurposes)
     case finish(OnboardingFinish)
+    case girlIntro(OnboardingGirlIntro)
 }
 
 extension OnboardingData {
     var index: Int? {
         switch self {
-        case .welcome, .perfectLook, .finish:
+        case .welcome, .perfectLook, .finish, .girlIntro:
             return nil
         case let .name(data as StepIndexable),
             let .weightAHeight(data as StepIndexable),
@@ -338,6 +339,16 @@ struct OnboardingFinish: TitledButton, BackgroundImage {
     let backgroundImage: String
     let image: String
     let progressViewTitle: [String]
+    let buttonTitle: String
+}
+
+// GirlIntro
+struct OnboardingGirlIntro: TitledButton, BackgroundImage {
+    let backgroundImage: String
+    let title: String
+    let emoji: String
+    let list: [String]
+    let description: String
     let buttonTitle: String
 }
 
