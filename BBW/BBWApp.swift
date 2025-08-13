@@ -2,14 +2,30 @@ import SwiftUI
 
 @main
 struct BBWApp: App {
-    @StateObject private var userDefaultsManager = UserDefaultsManager()
+    @InjectedObject(\.appStateManager) var appStateManager
+    
+    init() {
+        configurePurchasesManager()
+    }
     
     var body: some Scene {
         WindowGroup {
-            RootView()
-                .environmentObject(userDefaultsManager)
+            switch appStateManager.currentState {
+            case .onboarding:
+                OnboardingBuilder()
+                    .build()
+            case .main:
+                MainBuilder()
+                    .build()
+            }
         }
     }
+    
+    private func configurePurchasesManager() {
+        PurchasesManager.shared.completionAllTransaction()
+        PurchasesManager.shared.retriveInfo()
+    }
+    
 }
 
 struct NavigationModifiers: ViewModifier {

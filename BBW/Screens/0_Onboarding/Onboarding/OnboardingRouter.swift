@@ -2,7 +2,7 @@ import SwiftUI
 import RouterModifier
 
 enum OnboardingRouterScreenType: RouterScreenProtocol {
-
+    case paywall
     case mainApp
 }
 
@@ -12,9 +12,9 @@ enum OnboardingRouterAlertType: RouterAlertScreenProtocol {
 
 struct OnboardingRouter: RouterModifierProtocol {
     let routerEvents: OnboardingRouterTypes
-    private let intent: OnboardingIntentProtocol
+    private let intent: OnboardingIntentProtocol & OnboardingActionProtocol
     
-    init(routerEvents: OnboardingRouterTypes, intent: OnboardingIntentProtocol) {
+    init(routerEvents: OnboardingRouterTypes, intent: OnboardingIntentProtocol & OnboardingActionProtocol) {
         self.routerEvents = routerEvents
         self.intent = intent
     }
@@ -22,8 +22,11 @@ struct OnboardingRouter: RouterModifierProtocol {
     @ViewBuilder
     func getScreen(for type: OnboardingRouterScreenType) -> some View {
         switch type {
+        case .paywall:
+            OnboardingPaywallBuilder()
+                .build()
         case .mainApp:
-            EmptyView() 
+            EmptyView()
             
         }
     }
@@ -31,8 +34,11 @@ struct OnboardingRouter: RouterModifierProtocol {
     func getScreenPresentationType(for type: OnboardingRouterScreenType) -> RouterScreenPresentationType {
         switch type {
         
+        case .paywall:
+            return .navigationDestination
+            
         case .mainApp:
-            return .fullScreenCover
+            return .navigationDestination
         }
     }
 }

@@ -8,11 +8,15 @@ protocol OnboardingPaywallIntentProtocol {
 }
 
 protocol OnboardingPaywallActionProtocol {
-    func onButtonTap()
+    func onDismiss()
+    func onPurchaseButtonTap()
 }
 
 protocol OnboardingPaywallModelStatePotocol: ObservableObject {
     var data: OnboardingPaywallInputData { get set }
+    var prices: OnboardingPaywallPricesnData { get set }
 }
 
-protocol OnboardingPaywallModelActionsProtocol {}
+protocol OnboardingPaywallModelActionsProtocol {
+    func configurePrices(with data: OnboardingPaywallPricesnData)
+}

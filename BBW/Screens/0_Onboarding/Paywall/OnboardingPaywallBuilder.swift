@@ -1,8 +1,46 @@
 import SwiftUI
 
 struct OnboardingPaywallInputData {
-    let labelText1: String
-    
+    let image: String
+    let title: String
+    let features: [OnboardingPaywallFeaturesData]
+    let leftButton: OnboardingPaywallButtonData
+    let rightButton: OnboardingPaywallButtonData
+    let description: String
+    let buttonTitle: String
+    let moreInfoViewData: MoreInfoViewData
+}
+
+struct OnboardingPaywallFeaturesData {
+    var id = UUID()
+    let title: String
+    let emoji: String
+}
+
+enum OnboardingPaywallButtonType {
+    case left
+    case right
+}
+
+struct OnboardingPaywallButtonData {
+    let type: OnboardingPaywallButtonType
+    let title: String
+}
+
+struct MoreInfoViewData {
+    let privacyPolice: String
+    let termsOfUse: String
+    let restore: String
+}
+
+struct OnboardingPaywallPricePeriodData {
+    let price: String
+    let pricePerDay: String
+}
+
+struct OnboardingPaywallPricesnData {
+    let monthlyPrice: OnboardingPaywallPricePeriodData
+    let weeklyPrice: OnboardingPaywallPricePeriodData
 }
 
 final class OnboardingPaywallBuilder {

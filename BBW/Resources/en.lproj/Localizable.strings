@@ -99,4 +99,20 @@
 "onboarding_girl_intro_3" = "Flirting";
 "onboarding_girl_intro_i_am" = "I'm";
 "onboarding_girl_intro_button" = "Go to Chat";
-
+//Onboarding Paywall
+"onboarding_onboarding_paywall_title" = "Choose your rate";
+"onboarding_onboarding_paywall_features1" = "Vip ai girls";
+"onboarding_onboarding_paywall_features2" = "Chat without limits";
+"onboarding_onboarding_paywall_features3" = "Your own character";
+"onboarding_onboarding_paywall_features4" = "Ad free experience";
+"onboarding_onboarding_paywall_leftButton_title" = "Monthly Access";
+"onboarding_onboarding_paywall_leftButton_price" = "%@";
+"onboarding_onboarding_paywall_leftButton_pricePerDay" = "%@ per day";
+"onboarding_onboarding_paywall_rightButton_title" = "Weekly Access";
+"onboarding_onboarding_paywall_rightButton_price" = "%@";
+"onboarding_onboarding_paywall_rightButton_pricePerDay" = "%@ per day";
+"onboarding_onboarding_paywall_description" = "Cancel anytime";
+"onboarding_onboarding_paywall_button" = "Get Pro";
+"onboarding_onboarding_paywall_privacyPolice" = "Privacy policy";
+"onboarding_onboarding_paywall_termsOfUse" = "Terms of use";
+"onboarding_onboarding_paywall_restore" = "Restore";

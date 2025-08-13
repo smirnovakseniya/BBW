@@ -31,8 +31,7 @@ extension OnboardingModelStatePotocol {
 
 protocol OnboardingModelActionsProtocol {
     func configure(with inputData: OnboardingInputData)
-    func moveToNextStep()
-    func completeOnboarding()
+    func moveToNextStep() -> Bool
     func handleIsDisabledButton(_ isDisabled: Bool)
     func setRandomName()
 }

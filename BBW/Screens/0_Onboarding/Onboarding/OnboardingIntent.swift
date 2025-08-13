@@ -2,6 +2,7 @@ import Foundation
 import RouterModifier
 
 final class OnboardingIntent {
+    
     private let router: OnboardingRouterTypes
     private let model: OnboardingModelActionsProtocol
     private let inputData: OnboardingInputData?
@@ -18,8 +19,8 @@ final class OnboardingIntent {
 extension OnboardingIntent: OnboardingIntentProtocol {
     
     func viewOnAppear() {
-//        guard let inputData else { return }
-//        model.configure(with: inputData)
+        //        guard let inputData else { return }
+        //        model.configure(with: inputData)
     }
 }
 
@@ -57,16 +58,16 @@ extension OnboardingIntent: OnboardingActionProtocol {
     }
     
     func nextStep() {
-        model.moveToNextStep()
+        if model.moveToNextStep() {
+            completeOnboarding()
+        }
     }
     
     func handleRandomName() {
-            model.setRandomName()
-        }
+        model.setRandomName()
+    }
     
     func completeOnboarding() {
-        print("Onboarding completed with data:", onboardingData)
-        model.completeOnboarding()
-        router.routeTo(.mainApp)
+        router.routeTo(.paywall)
     }
 }

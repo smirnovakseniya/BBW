@@ -5,7 +5,9 @@ enum UserDefaultsKeys: String {
     case isCompletedOnboarding = "isCompletedOnboarding"
 }
 
-final class UserDefaultsManager: ObservableObject {
+final class UserDefaultsManager {
+    static let shared = UserDefaultsManager()
+    
     private let userDefaults: UserDefaults
     
     @Published var isFirstLaunch: Bool
