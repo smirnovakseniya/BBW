@@ -3,14 +3,34 @@ import SwiftUI
 // MARK: Main Models
 struct OnboardingFinalModel {
     var name: String = ""
-    var height: Int?
-    var weight: Int?
-    var age: Int?
+    var height: Int = 165
+    var weight: Int = 90
+    var age: Int = 21
     var nationality: OnboardingNationalityCell?
     var clothing: OnboardingClothingCell?
     var figure: OnboardingFigureCell?
     var bestPhoto: OnboardingBestPhotoCell?
     var talkAbout: Set<OnboardingTalkAboutCell> = []
+    var character: [OnboardingCharacterData] = [
+        .init(type: .submissiveVsDominant, value: 0.5),
+        .init(type: .gentleVsTough, value: 0.5),
+        .init(type: .calmVsImpulsive, value: 0.5),
+        .init(type: .pessimistVsOptimist, value: 0.5)
+    ]
+    
+    mutating func updateCharacterValue(with data: OnboardingCharacterData) {
+            if let index = character.firstIndex(where: { $0.type == data.type }) {
+                character[index].value = data.value
+            }
+        }
+    
+    mutating func toggleTalkAbout(_ data: OnboardingTalkAboutCell) {
+            if talkAbout.contains(data) {
+                talkAbout.remove(data)
+            } else {
+                talkAbout.insert(data)
+            }
+        }
 }
 
 enum OnboardingFields {
@@ -23,6 +43,7 @@ enum OnboardingFields {
     case figure(OnboardingFigureCell)
     case bestPhoto(OnboardingBestPhotoCell)
     case talkAbout(OnboardingTalkAboutCell)
+    case character(OnboardingCharacterData)
 }
 
 struct OnboardingInputData {}
@@ -39,6 +60,7 @@ enum OnboardingData {
     case bestPhoto(OnboardingBestPhoto)
     case perfectLook(OnboardingPerfectLook)
     case talkAbout(OnboardingTalkAbout)
+    case character(OnboardingCharacter)
 }
 
 extension OnboardingData {
@@ -53,7 +75,8 @@ extension OnboardingData {
             let .clothing(data as StepIndexable),
             let .figure(data as StepIndexable),
             let .bestPhoto(data as StepIndexable),
-            let .talkAbout(data as StepIndexable):
+            let .talkAbout(data as StepIndexable),
+            let .character(data as StepIndexable):
             return data.index
         }
     }
@@ -249,7 +272,7 @@ struct OnboardingTalkAboutCell: Hashable {
     var id = UUID()
     let type: TalkAboutStyle
     let title: String
-    let image: String
+    let emoji: String
 }
 
 struct OnboardingTalkAbout: StepIndexable, Titled, TitledButton {
@@ -257,6 +280,33 @@ struct OnboardingTalkAbout: StepIndexable, Titled, TitledButton {
     let title: String
     let list: [OnboardingTalkAboutCell]
     let buttonTitle: String
+}
+
+//Character
+enum CharacterTypes {
+    case submissiveVsDominant
+    case gentleVsTough
+    case calmVsImpulsive
+    case pessimistVsOptimist
+}
+struct OnboardingCharacterSlider: Hashable {
+    var id = UUID()
+    let type: CharacterTypes
+    let leftTitle: String
+    let rightTitle: String
+    var value: Float = 0.5
+    let emoji: String
+}
+struct OnboardingCharacter: StepIndexable, Titled, TitledButton {
+    let index: Int
+    let title: String
+    let list: [OnboardingCharacterSlider]
+    let buttonTitle: String
+}
+
+struct OnboardingCharacterData {
+    let type: CharacterTypes
+    var value: CGFloat
 }
 
 // MARK:  Builder

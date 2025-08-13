@@ -44,7 +44,7 @@ private struct OnboardingTalkAboutCellView: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            Text(data.image)
+            Text(data.emoji)
             
             Text(data.title)
                 .font(FontFamily.SFProRounded.medium.swiftUIFont(size: 18))

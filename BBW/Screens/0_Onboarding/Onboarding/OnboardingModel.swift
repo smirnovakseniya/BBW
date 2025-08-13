@@ -164,22 +164,53 @@ final class OnboardingModel: OnboardingModelStatePotocol {
 //            ],
 //            buttonTitle: L10n.onboardingPerfectLookButton
 //        )),
-        .talkAbout(.init(
-            index: 8,
-            title: L10n.onboardingTalkAboutTitle,
+//        .talkAbout(.init(
+//            index: 8,
+//            title: L10n.onboardingTalkAboutTitle,
+//            list: [
+//                .init(type: .justTalkin, title: L10n.onboardingTalkAboutCell1, emoji: "👋"),
+//                .init(type: .makeFriends, title: L10n.onboardingTalkAboutCell2, emoji: "🤝"),
+//                .init(type: .confidence, title: L10n.onboardingTalkAboutCell3, emoji: "💪"),
+//                .init(type: .romance, title: L10n.onboardingTalkAboutCell4, emoji: "🥰"),
+//                .init(type: .relationship, title: L10n.onboardingTalkAboutCell5, emoji: "👩‍❤️‍💋‍👨"),
+//                .init(type: .flirt, title: L10n.onboardingTalkAboutCell6, emoji: "🔥"),
+//                .init(type: .rolePlaying, title: L10n.onboardingTalkAboutCell7, emoji: "🍑"),
+//                .init(type: .psychology, title: L10n.onboardingTalkAboutCell8, emoji: "📚"),
+//                .init(type: .support, title: L10n.onboardingTalkAboutCell9, emoji: "🤗"),
+//                .init(type: .problemsInLife, title: L10n.onboardingTalkAboutCell10, emoji: "🚫"),
+//            ],
+//            buttonTitle: L10n.onboardingTalkAboutButton
+//        )),
+        .character(.init(
+            index: 9,
+            title: L10n.onboardingCharacterTitle,
             list: [
-                .init(type: .justTalkin, title: L10n.onboardingTalkAboutCell1, image: "👋"),
-                .init(type: .makeFriends, title: L10n.onboardingTalkAboutCell2, image: "🤝"),
-                .init(type: .confidence, title: L10n.onboardingTalkAboutCell3, image: "💪"),
-                .init(type: .romance, title: L10n.onboardingTalkAboutCell4, image: "🥰"),
-                .init(type: .relationship, title: L10n.onboardingTalkAboutCell5, image: "👩‍❤️‍💋‍👨"),
-                .init(type: .flirt, title: L10n.onboardingTalkAboutCell6, image: "🔥"),
-                .init(type: .rolePlaying, title: L10n.onboardingTalkAboutCell7, image: "🍑"),
-                .init(type: .psychology, title: L10n.onboardingTalkAboutCell8, image: "📚"),
-                .init(type: .support, title: L10n.onboardingTalkAboutCell9, image: "🤗"),
-                .init(type: .problemsInLife, title: L10n.onboardingTalkAboutCell10, image: "🚫"),
+                .init(
+                    type: .submissiveVsDominant,
+                    leftTitle: L10n.OnboardingCharacter1._1,
+                    rightTitle: L10n.OnboardingCharacter1._2,
+                    emoji: "💣"
+                ),
+                .init(
+                    type: .gentleVsTough,
+                    leftTitle: L10n.OnboardingCharacter2._1,
+                    rightTitle: L10n.OnboardingCharacter2._2,
+                    emoji: "🌼"
+                ),
+                .init(
+                    type: .calmVsImpulsive,
+                    leftTitle: L10n.OnboardingCharacter3._1,
+                    rightTitle: L10n.OnboardingCharacter3._2,
+                    emoji: "🤍"
+                ),
+                .init(
+                    type: .pessimistVsOptimist,
+                    leftTitle: L10n.OnboardingCharacter4._1,
+                    rightTitle: L10n.OnboardingCharacter4._2,
+                    emoji: "🙃"
+                ),
             ],
-            buttonTitle: L10n.onboardingTalkAboutButton
+            buttonTitle: L10n.onboardingCharacterButton
         ))
     ]
     

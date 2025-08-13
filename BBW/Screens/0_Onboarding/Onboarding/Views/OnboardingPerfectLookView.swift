@@ -78,7 +78,6 @@ private struct ContainerProgressBars: View {
                 )
             }
         }
-        .padding()
         .onAppear {
             animateProgressBarsSequentially()
         }

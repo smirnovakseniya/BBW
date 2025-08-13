@@ -64,4 +64,14 @@
 "onboarding_talk_about_cell_9" = "Support";
 "onboarding_talk_about_cell_10" = "Problems in life";
 "onboarding_talk_about_button" = "Next";
-
+//Character
+"onboarding_character_title" = "Her character";
+"onboarding_character_1.1" = "Submissive";
+"onboarding_character_1.2" = "Dominant";
+"onboarding_character_2.1" = "Gentle";
+"onboarding_character_2.2" = "Tough";
+"onboarding_character_3.1" = "Calm";
+"onboarding_character_3.2" = "Impulsive";
+"onboarding_character_4.1" = "Pessimist";
+"onboarding_character_4.2" = "Optimist";
+"onboarding_character_button" = "Next";

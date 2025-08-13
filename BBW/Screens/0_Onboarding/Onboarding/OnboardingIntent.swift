@@ -48,12 +48,10 @@ extension OnboardingIntent: OnboardingActionProtocol {
         case .bestPhoto(let data):
             onboardingData.bestPhoto = data
         case .talkAbout(let data):
-            if onboardingData.talkAbout.contains(data) {
-                onboardingData.talkAbout.remove(data)
-            } else {
-                onboardingData.talkAbout.insert(data)
-            }
+            onboardingData.toggleTalkAbout(data)
             model.handleIsDisabledButton(onboardingData.talkAbout.isEmpty)
+        case .character(let data):
+            onboardingData.updateCharacterValue(with: data)
         }
         print("## onboardingData: \(onboardingData)")
     }
