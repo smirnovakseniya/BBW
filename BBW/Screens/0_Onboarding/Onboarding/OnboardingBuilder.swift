@@ -61,6 +61,7 @@ enum OnboardingData {
     case perfectLook(OnboardingPerfectLook)
     case talkAbout(OnboardingTalkAbout)
     case character(OnboardingCharacter)
+    case purposes(OnboardingPurposes)
 }
 
 extension OnboardingData {
@@ -76,7 +77,8 @@ extension OnboardingData {
             let .figure(data as StepIndexable),
             let .bestPhoto(data as StepIndexable),
             let .talkAbout(data as StepIndexable),
-            let .character(data as StepIndexable):
+            let .character(data as StepIndexable),
+            let .purposes(data as StepIndexable):
             return data.index
         }
     }
@@ -303,10 +305,30 @@ struct OnboardingCharacter: StepIndexable, Titled, TitledButton {
     let list: [OnboardingCharacterSlider]
     let buttonTitle: String
 }
-
 struct OnboardingCharacterData {
     let type: CharacterTypes
     var value: CGFloat
+}
+
+//Purposes
+enum PurposesTypes {
+    case relationships
+    case friendship
+    case helpAndSupport
+    case justSocializing
+}
+struct OnboardingPurposesCell: Hashable {
+    var id = UUID()
+    let type: PurposesTypes
+    let emoji: String
+    let title: String
+    let description: String
+}
+struct OnboardingPurposes: StepIndexable, Titled, TitledButton {
+    let index: Int
+    let title: String
+    let list: [OnboardingPurposesCell]
+    let buttonTitle: String
 }
 
 // MARK:  Builder

@@ -75,3 +75,15 @@
 "onboarding_character_4.1" = "Pessimist";
 "onboarding_character_4.2" = "Optimist";
 "onboarding_character_button" = "Next";
+//Purposes
+"onboarding_purposes_title" = "The main purpose of communication";
+"onboarding_purposes_1_title" = "Relationships";
+"onboarding_purposes_1_description" = "Romance, passion, and support. A devoted and loving companion always with you.";
+"onboarding_purposes_2_title" = "Friendship";
+"onboarding_purposes_2_description" = "Trust, laughter, sharing and understanding during life's ups and downs.";
+"onboarding_purposes_3_title" = "Help and Support";
+"onboarding_purposes_3_description" = "A mentor and helping hand. A trusted helper who lifts you up in times of need and rejoices in your successes.";
+"onboarding_purposes_4_title" = "Just Socializing";
+"onboarding_purposes_4_description" = "Casual and lighthearted communication. Without deep emotional feelings, enjoying each other's company.";
+"onboarding_purposes_button" = "Next";
+

@@ -181,36 +181,67 @@ final class OnboardingModel: OnboardingModelStatePotocol {
 //            ],
 //            buttonTitle: L10n.onboardingTalkAboutButton
 //        )),
-        .character(.init(
-            index: 9,
-            title: L10n.onboardingCharacterTitle,
+//        .character(.init(
+//            index: 9,
+//            title: L10n.onboardingCharacterTitle,
+//            list: [
+//                .init(
+//                    type: .submissiveVsDominant,
+//                    leftTitle: L10n.OnboardingCharacter1._1,
+//                    rightTitle: L10n.OnboardingCharacter1._2,
+//                    emoji: "💣"
+//                ),
+//                .init(
+//                    type: .gentleVsTough,
+//                    leftTitle: L10n.OnboardingCharacter2._1,
+//                    rightTitle: L10n.OnboardingCharacter2._2,
+//                    emoji: "🌼"
+//                ),
+//                .init(
+//                    type: .calmVsImpulsive,
+//                    leftTitle: L10n.OnboardingCharacter3._1,
+//                    rightTitle: L10n.OnboardingCharacter3._2,
+//                    emoji: "🤍"
+//                ),
+//                .init(
+//                    type: .pessimistVsOptimist,
+//                    leftTitle: L10n.OnboardingCharacter4._1,
+//                    rightTitle: L10n.OnboardingCharacter4._2,
+//                    emoji: "🙃"
+//                ),
+//            ],
+//            buttonTitle: L10n.onboardingCharacterButton
+//        )),
+        .purposes(.init(
+            index: 10,
+            title: L10n.onboardingPurposesTitle,
             list: [
                 .init(
-                    type: .submissiveVsDominant,
-                    leftTitle: L10n.OnboardingCharacter1._1,
-                    rightTitle: L10n.OnboardingCharacter1._2,
-                    emoji: "💣"
+                    type: .relationships,
+                    emoji: "❤️",
+                    title: L10n.onboardingPurposes1Title,
+                    description: L10n.onboardingPurposes1Description
                 ),
                 .init(
-                    type: .gentleVsTough,
-                    leftTitle: L10n.OnboardingCharacter2._1,
-                    rightTitle: L10n.OnboardingCharacter2._2,
-                    emoji: "🌼"
+                    type: .friendship,
+                    emoji: "👫",
+                    title: L10n.onboardingPurposes2Title,
+                    description: L10n.onboardingPurposes2Description
                 ),
                 .init(
-                    type: .calmVsImpulsive,
-                    leftTitle: L10n.OnboardingCharacter3._1,
-                    rightTitle: L10n.OnboardingCharacter3._2,
-                    emoji: "🤍"
+                    type: .helpAndSupport,
+                    emoji: "🆘",
+                    title: L10n.onboardingPurposes3Title,
+                    description: L10n.onboardingPurposes3Description
                 ),
                 .init(
-                    type: .pessimistVsOptimist,
-                    leftTitle: L10n.OnboardingCharacter4._1,
-                    rightTitle: L10n.OnboardingCharacter4._2,
-                    emoji: "🙃"
-                ),
+                    type: .justSocializing,
+                    emoji: "💬",
+                    title: L10n.onboardingPurposes4Title,
+                    description: L10n.onboardingPurposes4Description
+                )
             ],
-            buttonTitle: L10n.onboardingCharacterButton
+            buttonTitle: L10n.onboardingPurposesButton
         ))
     ]
     
