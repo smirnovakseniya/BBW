@@ -86,4 +86,10 @@
 "onboarding_purposes_4_title" = "Just Socializing";
 "onboarding_purposes_4_description" = "Casual and lighthearted communication. Without deep emotional feelings, enjoying each other's company.";
 "onboarding_purposes_button" = "Next";
+//Finish
+"onboarding_finish_title" = "Create the perfect look";
+"onboarding_finish_progress_view_1" = "Query Processing";
+"onboarding_finish_progress_view_2" = "Teaching communication styles";
+"onboarding_finish_progress_view_3" = "Assigning character traits";
+"onboarding_finish_button" = "Next";
 

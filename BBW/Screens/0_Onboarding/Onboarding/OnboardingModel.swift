@@ -212,36 +212,47 @@ final class OnboardingModel: OnboardingModelStatePotocol {
 //            ],
 //            buttonTitle: L10n.onboardingCharacterButton
 //        )),
-        .purposes(.init(
-            index: 10,
-            title: L10n.onboardingPurposesTitle,
-            list: [
-                .init(
-                    type: .relationships,
-                    emoji: "❤️",
-                    title: L10n.onboardingPurposes1Title,
-                    description: L10n.onboardingPurposes1Description
-                ),
-                .init(
-                    type: .friendship,
-                    emoji: "👫",
-                    title: L10n.onboardingPurposes2Title,
-                    description: L10n.onboardingPurposes2Description
-                ),
-                .init(
-                    type: .helpAndSupport,
-                    emoji: "🆘",
-                    title: L10n.onboardingPurposes3Title,
-                    description: L10n.onboardingPurposes3Description
-                ),
-                .init(
-                    type: .justSocializing,
-                    emoji: "💬",
-                    title: L10n.onboardingPurposes4Title,
-                    description: L10n.onboardingPurposes4Description
-                )
+//        .purposes(.init(
+//            index: 10,
+//            title: L10n.onboardingPurposesTitle,
+//            list: [
+//                .init(
+//                    type: .relationships,
+//                    emoji: "❤️",
+//                    title: L10n.onboardingPurposes1Title,
+//                    description: L10n.onboardingPurposes1Description
+//                ),
+//                .init(
+//                    type: .friendship,
+//                    emoji: "👫",
+//                    title: L10n.onboardingPurposes2Title,
+//                    description: L10n.onboardingPurposes2Description
+//                ),
+//                .init(
+//                    type: .helpAndSupport,
+//                    emoji: "🆘",
+//                    title: L10n.onboardingPurposes3Title,
+//                    description: L10n.onboardingPurposes3Description
+//                ),
+//                .init(
+//                    type: .justSocializing,
+//                    emoji: "💬",
+//                    title: L10n.onboardingPurposes4Title,
+//                    description: L10n.onboardingPurposes4Description
+//                )
+        //            ],
+        //            buttonTitle: L10n.onboardingPurposesButton
+        //        )),
+        .finish(.init(
+            title: L10n.onboardingFinishTitle,
+            backgroundImage: Asset.Assets.imgOnboardingFinish.name,
+           image: Asset.Assets.imgOnboardingFinishImage.name,
+            progressViewTitle: [
+                L10n.onboardingFinishProgressView1,
+                L10n.onboardingFinishProgressView2,
+                L10n.onboardingFinishProgressView3
             ],
-            buttonTitle: L10n.onboardingPurposesButton
+            buttonTitle: L10n.onboardingFinishButton
         ))
     ]
     

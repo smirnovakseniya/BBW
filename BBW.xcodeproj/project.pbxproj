@@ -34,6 +34,9 @@
 			exceptions = (
 				F20412F02E44A0290068B8AE /* Exceptions for "BBW" folder in "BBW" target */,
 			);
+			explicitFolders = (
+				Resources/.xcassets,
+			);
 			path = BBW;
 			sourceTree = "<group>";
 		};

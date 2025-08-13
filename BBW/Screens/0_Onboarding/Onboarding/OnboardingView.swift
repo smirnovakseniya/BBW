@@ -61,7 +61,7 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
     private func titleForData(for data: OnboardingData) -> some View {
         let title: String? = {
             switch data {
-            case .welcome(_), .perfectLook(_):
+            case .welcome, .perfectLook, .finish:
                 return nil
             case let .name(model as Titled),
                 let .weightAHeight(model as Titled),
@@ -79,16 +79,17 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
         
         let description: String? = {
             switch data {
-            case .welcome(_),
-                    .name(_),
-                    .weightAHeight(_),
-                    .age(_),
-                    .clothing(_),
-                    .figure(_),
-                    .perfectLook(_),
-                    .talkAbout(_),
-                    .character(_),
-                    .purposes(_):
+            case .welcome,
+                    .name,
+                    .weightAHeight,
+                    .age,
+                    .clothing,
+                    .figure,
+                    .perfectLook,
+                    .talkAbout,
+                    .character,
+                    .purposes,
+                    .finish:
                 return nil
             case let .nationality(model as TitledDescription),
                 let .bestPhoto(model as TitledDescription):
@@ -164,6 +165,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
             }
         case .purposes(let model):
             OnboardingPurposesView(model: model)
+        case .finish(let model):
+            OnboardingFinishView(model: model)
         }
     }
     
@@ -176,7 +179,8 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
             let .bestPhoto(model as TitledButton),
             let .perfectLook(model as TitledButton),
             let .character(model as TitledButton),
-            let .purposes(model as TitledButton):
+            let .purposes(model as TitledButton),
+            let .finish(model as TitledButton):
             OnboardingButton(
                 isDisabled: false,
                 text: model.buttonTitle
@@ -199,7 +203,7 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                     intent.handleRandomName()
                 }
             }
-        case .nationality(_), .clothing(_), .figure(_):
+        case .nationality, .clothing, .figure:
             EmptyView()
         case let .talkAbout(model as TitledButton):
             OnboardingButton(
@@ -215,21 +219,22 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
     private func backgroundImageName(for data: OnboardingData) -> some View {
         switch data {
         case let .welcome(model as BackgroundImage),
-            let .perfectLook(model as BackgroundImage):
+            let .perfectLook(model as BackgroundImage),
+            let .finish(model as BackgroundImage):
             Image(model.backgroundImage)
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
-        case .name(_),
-                .weightAHeight(_),
-                .age(_),
-                .nationality(_),
-                .clothing(_),
-                .figure(_),
-                .bestPhoto(_),
-                .talkAbout(_),
-                .character(_),
-                .purposes(_):
+        case .name,
+                .weightAHeight,
+                .age,
+                .nationality,
+                .clothing,
+                .figure,
+                .bestPhoto,
+                .talkAbout,
+                .character,
+                .purposes:
             EmptyView()
         }
     }
