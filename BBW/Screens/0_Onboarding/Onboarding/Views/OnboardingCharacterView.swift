@@ -17,7 +17,7 @@ struct OnboardingCharacterView: View {
     }
 }
 
-struct CustomSlider: View {
+private struct CustomSlider: View {
     @State private var value: CGFloat = 0.5
     
     let data: OnboardingCharacterSlider

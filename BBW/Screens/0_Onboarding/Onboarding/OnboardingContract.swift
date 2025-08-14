@@ -3,9 +3,7 @@ import RouterModifier
 
 typealias OnboardingRouterTypes = RouterEvents<OnboardingRouterScreenType, OnboardingRouterAlertType>
 
-protocol OnboardingIntentProtocol {
-    func viewOnAppear()
-}
+protocol OnboardingIntentProtocol { }
 
 protocol OnboardingActionProtocol {
     var onboardingData: OnboardingFinalModel { get }

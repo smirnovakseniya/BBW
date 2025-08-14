@@ -16,13 +16,7 @@ final class OnboardingIntent {
     }
 }
 
-extension OnboardingIntent: OnboardingIntentProtocol {
-    
-    func viewOnAppear() {
-        //        guard let inputData else { return }
-        //        model.configure(with: inputData)
-    }
-}
+extension OnboardingIntent: OnboardingIntentProtocol { }
 
 extension OnboardingIntent: OnboardingActionProtocol {
     

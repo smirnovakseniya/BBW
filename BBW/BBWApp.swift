@@ -6,7 +6,7 @@ struct BBWApp: App {
     @Injected(\.purchasesManager) var purchasesManager: PurchasesManager
     
     init() {
-        purchasesManager.configureForAppLaunch()
+        configureManagers()
     }
     
     var body: some Scene {
@@ -20,6 +20,10 @@ struct BBWApp: App {
                     .build()
             }
         }
+    }
+    
+    func configureManagers() {
+        purchasesManager.configureForAppLaunch()
     }
 }
 

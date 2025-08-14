@@ -46,17 +46,15 @@ struct OnboardingPerfectLookView: View {
     }
     
     private func cellView(title: String, value: Int?, width: CGFloat, height: CGFloat) -> some View {
-        OnboardingPerfectLookDataView(title: title, value: value, width: width, height: height)
+        PerfectLookDataView(title: title, value: value, width: width, height: height)
     }
     
     private func imageCell(image: String?, width: CGFloat, height: CGFloat) -> some View {
-        OnboardingPerfectLookImageView(image: image, width: width, height: height)
+        PerfectLookImageView(image: image, width: width, height: height)
     }
 }
 
-//MARK: Subviews
-
-private struct OnboardingPerfectLookDataView: View {
+private struct PerfectLookDataView: View {
     let title: String
     let value: Int?
     let width: CGFloat
@@ -74,6 +72,8 @@ private struct OnboardingPerfectLookDataView: View {
                 
                 Text(value?.description ?? "--")
                     .font(FontFamily.SFProRounded.semibold.swiftUIFont(size: 42))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
                     .frame(maxHeight: .infinity, alignment: .center)
             }
             .foregroundColor(Asset.Colors.fffdfb.swiftUIColor)
@@ -84,7 +84,7 @@ private struct OnboardingPerfectLookDataView: View {
     }
 }
 
-private struct OnboardingPerfectLookImageView: View {
+private struct PerfectLookImageView: View {
     let image: String?
     let width: CGFloat
     let height: CGFloat

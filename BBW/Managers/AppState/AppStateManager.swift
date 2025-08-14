@@ -1,7 +1,6 @@
 import SwiftUI
 
 final class AppStateManager: ObservableObject {
-    
     @Published var currentState: AppState
     
     private var userDefaults: UserDefaultsManager
@@ -14,7 +13,7 @@ final class AppStateManager: ObservableObject {
     }
     
     func completeOnboarding() {
-        self.currentState = .main
-        //            self.userDefaults.save(true, forKey: .isCompletedOnboarding)
+        currentState = .main
+//        userDefaults.save(true, forKey: .isCompletedOnboarding) //MARK: TODO KS 
     }
 }

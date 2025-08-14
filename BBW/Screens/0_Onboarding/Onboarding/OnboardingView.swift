@@ -23,11 +23,9 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
         .background(
             backgroundImageName(for: model.currentData)
         )
+        .ignoresSafeArea(.keyboard) 
         .animation(.easeInOut, value: model.currentIndex)
         .frame(maxHeight: .infinity, alignment: .bottom)
-        .onAppear {
-            intent.viewOnAppear()
-        }
     }
     
     // MARK: Subviews
@@ -79,18 +77,7 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
         
         let description: String? = {
             switch data {
-            case .welcome,
-                    .name,
-                    .weightAHeight,
-                    .age,
-                    .clothing,
-                    .figure,
-                    .perfectLook,
-                    .talkAbout,
-                    .character,
-                    .purposes,
-                    .finish,
-                    .girlIntro:
+            case .welcome, .name, .weightAHeight, .age, .clothing, .figure, .perfectLook, .talkAbout, .character, .purposes, .finish, .girlIntro:
                 return nil
             case let .nationality(model as TitledDescription),
                 let .bestPhoto(model as TitledDescription):
@@ -230,16 +217,7 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
-        case .name,
-                .weightAHeight,
-                .age,
-                .nationality,
-                .clothing,
-                .figure,
-                .bestPhoto,
-                .talkAbout,
-                .character,
-                .purposes:
+        case .name, .weightAHeight, .age, .nationality, .clothing, .figure, .bestPhoto, .talkAbout, .character, .purposes:
             EmptyView()
         }
     }

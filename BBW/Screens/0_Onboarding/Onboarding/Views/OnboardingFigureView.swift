@@ -17,11 +17,11 @@ struct OnboardingFigureView: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            OnboardingFigureCellView(model: leftData)
+            FigureCellView(model: leftData)
                 .onTapGesture {
                     action?(leftData)
                 }
-            OnboardingFigureCellView(model: rightData)
+            FigureCellView(model: rightData)
                 .onTapGesture {
                     action?(rightData)
                 }
@@ -30,7 +30,7 @@ struct OnboardingFigureView: View {
     }
 }
 
-struct OnboardingFigureCellView: View {
+private struct FigureCellView: View {
     let model: TitledImageCell
     
     var body: some View {

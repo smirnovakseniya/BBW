@@ -3,7 +3,6 @@ import RouterModifier
 
 enum OnboardingRouterScreenType: RouterScreenProtocol {
     case paywall
-    case mainApp
 }
 
 enum OnboardingRouterAlertType: RouterAlertScreenProtocol {
@@ -25,9 +24,6 @@ struct OnboardingRouter: RouterModifierProtocol {
         case .paywall:
             OnboardingPaywallBuilder()
                 .build()
-        case .mainApp:
-            EmptyView()
-            
         }
     }
     
@@ -35,9 +31,6 @@ struct OnboardingRouter: RouterModifierProtocol {
         switch type {
         
         case .paywall:
-            return .navigationDestination
-            
-        case .mainApp:
             return .navigationDestination
         }
     }

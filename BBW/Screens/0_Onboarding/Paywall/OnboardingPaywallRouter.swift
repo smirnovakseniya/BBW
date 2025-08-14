@@ -1,9 +1,7 @@
 import SwiftUI
 import RouterModifier
 
-enum OnboardingPaywallRouterScreenType: RouterScreenProtocol {
-    case dismiss
-}
+enum OnboardingPaywallRouterScreenType: RouterScreenProtocol { }
 
 enum OnboardingPaywallRouterAlertType: RouterAlertScreenProtocol {
     case failed(error: String)
@@ -34,21 +32,6 @@ struct OnboardingPaywallRouter: RouterModifierProtocol {
     ) {
         self.routerEvents = routerEvents
         self.intent = intent
-    }
-    
-    @ViewBuilder
-    func getScreen(for type: OnboardingPaywallRouterScreenType) -> some View {
-        switch type {
-        case .dismiss:
-            EmptyView()
-        }
-    }
-    
-    func getScreenPresentationType(for type: OnboardingPaywallRouterScreenType) -> RouterScreenPresentationType {
-        switch type {
-        case .dismiss:
-            return .navigationDestination
-        }
     }
     
     // MARK: Alert Methods
