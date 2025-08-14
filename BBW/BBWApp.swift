@@ -3,9 +3,10 @@ import SwiftUI
 @main
 struct BBWApp: App {
     @InjectedObject(\.appStateManager) var appStateManager
+    @Injected(\.purchasesManager) var purchasesManager: PurchasesManager
     
     init() {
-        configurePurchasesManager()
+        purchasesManager.configureForAppLaunch()
     }
     
     var body: some Scene {
@@ -20,13 +21,8 @@ struct BBWApp: App {
             }
         }
     }
-    
-    private func configurePurchasesManager() {
-        PurchasesManager.shared.completionAllTransaction()
-        PurchasesManager.shared.retriveInfo()
-    }
-    
 }
+
 
 struct NavigationModifiers: ViewModifier {
     func body(content: Content) -> some View {

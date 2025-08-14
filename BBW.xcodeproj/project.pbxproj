@@ -10,7 +10,6 @@
 		F20412F32E44A0310068B8AE /* RouterModifier in Frameworks */ = {isa = PBXBuildFile; productRef = F20412F22E44A0310068B8AE /* RouterModifier */; };
 		F2615FBE2E49016C00EBE138 /* VisualEffectView in Frameworks */ = {isa = PBXBuildFile; productRef = F2615FBD2E49016C00EBE138 /* VisualEffectView */; };
 		F26160972E49192A00EBE138 /* VisualEffectView in Frameworks */ = {isa = PBXBuildFile; productRef = F26160962E49192A00EBE138 /* VisualEffectView */; };
-		F2AFDFE12E4CC0D6006CEC38 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = F2AFDFE02E4CC0D6006CEC38 /* SwiftyStoreKit */; };
 		F2D2D1F42E477A6F00334AC2 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2D2D1F32E477A6F00334AC2 /* swiftgen.yml */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +48,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2615FBE2E49016C00EBE138 /* VisualEffectView in Frameworks */,
-				F2AFDFE12E4CC0D6006CEC38 /* SwiftyStoreKit in Frameworks */,
 				F26160972E49192A00EBE138 /* VisualEffectView in Frameworks */,
 				F20412F32E44A0310068B8AE /* RouterModifier in Frameworks */,
 			);
@@ -107,7 +105,6 @@
 				F20412F22E44A0310068B8AE /* RouterModifier */,
 				F2615FBD2E49016C00EBE138 /* VisualEffectView */,
 				F26160962E49192A00EBE138 /* VisualEffectView */,
-				F2AFDFE02E4CC0D6006CEC38 /* SwiftyStoreKit */,
 			);
 			productName = BBW;
 			productReference = F278C3302E449B3400A351A1 /* BBW.app */;
@@ -150,7 +147,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				F26160952E49192A00EBE138 /* XCRemoteSwiftPackageReference "VisualEffectView" */,
-				F2AFDFDF2E4CC0D6006CEC38 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F278C3312E449B3400A351A1 /* Products */;
@@ -421,14 +417,6 @@
 				minimumVersion = 5.0.3;
 			};
 		};
-		F2AFDFDF2E4CC0D6006CEC38 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.16.4;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -444,11 +432,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F26160952E49192A00EBE138 /* XCRemoteSwiftPackageReference "VisualEffectView" */;
 			productName = VisualEffectView;
-		};
-		F2AFDFE02E4CC0D6006CEC38 /* SwiftyStoreKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F2AFDFDF2E4CC0D6006CEC38 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
-			productName = SwiftyStoreKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

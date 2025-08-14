@@ -32,6 +32,8 @@ final class OnboardingPaywallModel: OnboardingPaywallModelStatePotocol {
         monthlyPrice: .init(price: "--", pricePerDay: "--"),
         weeklyPrice: .init(price: "--", pricePerDay: "--")
     )
+    
+    @Published var isSelectedProductId: ProductsIds = .month
 }
 
 

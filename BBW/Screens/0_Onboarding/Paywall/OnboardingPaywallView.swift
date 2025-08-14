@@ -4,9 +4,19 @@ import RouterModifier
 struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
     
     @ObservedObject var model: Model
-    let intent: (OnboardingPaywallIntentProtocol & OnboardingPaywallActionProtocol)
+    let intent: (OnboardingPaywallIntentProtocol & OnboardingPaywallActionProtocol & MoreInfoActionProtocol)
     
-    @State var isSelectedType: OnboardingPaywallButtonType = .left
+    private var isSelectedType: Binding<OnboardingPaywallButtonType> {
+        Binding(
+            get: {
+                model.isSelectedProductId == .month ? .left : .right
+            },
+            set: { newValue in
+                model.isSelectedProductId = newValue == .left ? .month : .week
+            }
+        )
+    }
+    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -29,12 +39,12 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
             
             HStack(spacing: 0) {
                 PaywallButtonView(
-                    isSelectedType: $isSelectedType,
+                    isSelectedType: isSelectedType,
                     data: model.data.leftButton,
                     price: model.prices.monthlyPrice
                 )
                 PaywallButtonView(
-                    isSelectedType: $isSelectedType,
+                    isSelectedType: isSelectedType,
                     data: model.data.rightButton,
                     price: model.prices.weeklyPrice
                 )
@@ -57,20 +67,29 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
                 isDisabled: false,
                 text: model.data.buttonTitle
             ) {
-                
+                intent.onPurchaseButtonTap()
             }
             .padding(.bottom, 40)
             .overlay(
                 HStack(spacing: 32) {
                     Text(model.data.moreInfoViewData.termsOfUse)
+                        .onTapGesture {
+                            intent.onTermsOfUseButtonTappred()
+                        }
                     Text(model.data.moreInfoViewData.privacyPolice)
+                        .onTapGesture {
+                            intent.onPrivacyPoliceButtonTappred()
+                        }
                     Text(model.data.moreInfoViewData.restore)
+                        .onTapGesture {
+                            intent.onRestoreButtonTappred()
+                        }
                 }
-                .underline()
-                .font(FontFamily.SFProRounded.regular.swiftUIFont(size: 12))
-                .foregroundColor(Asset.Colors._000000.swiftUIColor.opacity(0.6))
-                .offset(y: 68 / 2)
-                .frame(maxWidth: .infinity)
+                    .underline()
+                    .font(FontFamily.SFProRounded.regular.swiftUIFont(size: 12))
+                    .foregroundColor(Asset.Colors._000000.swiftUIColor.opacity(0.6))
+                    .offset(y: 68 / 2)
+                    .frame(maxWidth: .infinity)
             )
         }
         .padding(.horizontal, 16)
@@ -96,7 +115,7 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
         .navigationBarBackButtonHidden()
         .overlay(
             Button(action: {
-                print("Tap")
+                intent.onDismiss()
             }) {
                 Image(systemName: "multiply")
                     .resizable()

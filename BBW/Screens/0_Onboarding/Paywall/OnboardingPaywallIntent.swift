@@ -6,25 +6,24 @@ final class OnboardingPaywallIntent: OnboardingPaywallIntentProtocol {
     @Injected(\.purchasesManager) var purchasesManager: PurchasesManager
     
     private let router: OnboardingPaywallRouterTypes
-    private let model: OnboardingPaywallModelActionsProtocol
+    private let model: any OnboardingPaywallModelActionsProtocol & OnboardingPaywallModelStatePotocol
     private let inputData: OnboardingPaywallInputData?
     
     init(
         router: OnboardingPaywallRouterTypes,
-        model: OnboardingPaywallModelActionsProtocol,
+        model: any OnboardingPaywallModelActionsProtocol & OnboardingPaywallModelStatePotocol,
         inputData: OnboardingPaywallInputData?
     ) {
         self.router = router
         self.model = model
         self.inputData = inputData
     }
-    
 
     func viewOnAppear() {
-        let monthlyPrice = purchasesManager.getPrice(for: .month) ?? "--"
+        let monthlyPrice = purchasesManager.getMonthlyPrice() ?? "--"
         let monthlyPricePerDay = purchasesManager.getMonthlyPricePerDay() ?? "--"
-        let weeklyPrice = purchasesManager.getPrice(for: .week) ?? "--"
-        let weeklyPricePerDay = purchasesManager.getWeekPricePerDay() ?? "--"
+        let weeklyPrice = purchasesManager.getWeeklyPrice() ?? "--"
+        let weeklyPricePerDay = purchasesManager.getWeeklyPricePerDay() ?? "--"
         
         let prices: OnboardingPaywallPricesnData = .init(
             monthlyPrice: .init(
@@ -48,6 +47,33 @@ extension OnboardingPaywallIntent: OnboardingPaywallActionProtocol {
     }
     
     func onPurchaseButtonTap() {
-        
+        purchasesManager.purchase(product: model.isSelectedProductId) { [weak self] result in
+            guard let self else { return }
+            
+            switch result {
+            case .success:
+                onDismiss()
+                
+            case .failure(let error):
+                router.presentAlert(.failed(error: error.localizedDescription))
+            }
+        }
+    }
+}
+
+extension OnboardingPaywallIntent: MoreInfoActionProtocol {
+    
+    func onRestoreButtonTappred() {
+        purchasesManager.restorePurchases { [weak self] result in
+            guard let self else { return }
+            
+            switch result {
+            case .success:
+                onDismiss()
+                
+            case .failure(let error):
+                router.presentAlert(.failed(error: error.localizedDescription))
+            }
+        }
     }
 }

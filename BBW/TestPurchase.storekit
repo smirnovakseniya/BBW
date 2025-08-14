@@ -87,13 +87,7 @@
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "F99A0B61",
-          "introductoryOffer" : {
-            "displayPrice" : "0.99",
-            "internalID" : "DFA8BA1C",
-            "numberOfPeriods" : 1,
-            "paymentMode" : "payAsYouGo",
-            "subscriptionPeriod" : "P1M"
-          },
+          "introductoryOffer" : null,
           "localizations" : [
             {
               "description" : "",
