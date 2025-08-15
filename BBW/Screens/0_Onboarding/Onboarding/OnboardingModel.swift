@@ -255,7 +255,6 @@ final class OnboardingModel: OnboardingModelStatePotocol {
             buttonTitle: L10n.onboardingFinishButton
         )),
         .girlIntro(.init(
-            backgroundImage: Asset.Assets.imgOnboardingGirl.name,
             title: L10n.onboardingGirlIntroIAm,
             emoji: "🩷",
             list: [

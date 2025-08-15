@@ -1,7 +1,10 @@
 import SwiftUI
 
 struct OnboardingPaywallInputData {
-    let image: String
+    let girlImageName: String
+}
+
+struct OnboardingPaywallData {
     let title: String
     let features: [OnboardingPaywallFeaturesData]
     let leftButton: OnboardingPaywallButtonData
@@ -46,6 +49,11 @@ struct OnboardingPaywallPricesnData {
 final class OnboardingPaywallBuilder {
     
     private var inputData: OnboardingPaywallInputData?
+    
+    func set(inputData: OnboardingPaywallInputData) -> OnboardingPaywallBuilder {
+        self.inputData = inputData
+        return self
+    }
     
     func build() -> some View {
         let router = OnboardingPaywallRouterTypes()

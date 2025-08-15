@@ -2,8 +2,9 @@ import SwiftUI
 
 final class OnboardingPaywallModel: OnboardingPaywallModelStatePotocol {
     
-    @Published var data: OnboardingPaywallInputData = .init(
-        image: Asset.Assets.imgOnboardingGirl.name,
+    @Published var girlImageName: String = ""
+    
+    @Published var data: OnboardingPaywallData = .init(
         title: L10n.onboardingOnboardingPaywallTitle,
         features: [
             .init(title: L10n.onboardingOnboardingPaywallFeatures1, emoji: "💎"),
@@ -41,5 +42,9 @@ extension OnboardingPaywallModel: OnboardingPaywallModelActionsProtocol {
     
     func configurePrices(with data: OnboardingPaywallPricesnData) {
         prices = data
+    }
+    
+    func configureGirlImageName(with data: String) {
+        girlImageName = data
     }
 }

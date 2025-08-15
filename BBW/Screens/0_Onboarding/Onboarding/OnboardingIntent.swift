@@ -64,4 +64,16 @@ extension OnboardingIntent: OnboardingActionProtocol {
     func completeOnboarding() {
         router.routeTo(.paywall)
     }
+    
+    
+    func prepareGirlsPhoto() -> String {
+        guard
+            let nationality: String = onboardingData.nationality?.type.rawValue,
+            let clothing: String = onboardingData.clothing?.type.rawValue
+        else {
+            return Asset.Assets.imgOnboardingPaywallCircles.name
+        }
+        
+        return "img_onboarding_\(nationality)_\(clothing)"
+    }
 }

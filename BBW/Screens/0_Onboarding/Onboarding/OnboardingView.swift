@@ -23,7 +23,7 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
         .background(
             backgroundImageName(for: model.currentData)
         )
-        .ignoresSafeArea(.keyboard) 
+        .ignoresSafeArea(.keyboard)
         .animation(.easeInOut, value: model.currentIndex)
         .frame(maxHeight: .infinity, alignment: .bottom)
     }
@@ -211,14 +211,23 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
         switch data {
         case let .welcome(model as BackgroundImage),
             let .perfectLook(model as BackgroundImage),
-            let .finish(model as BackgroundImage),
-            let .girlIntro(model as BackgroundImage):
+            let .finish(model as BackgroundImage):
             Image(model.backgroundImage)
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
         case .name, .weightAHeight, .age, .nationality, .clothing, .figure, .bestPhoto, .talkAbout, .character, .purposes:
             EmptyView()
+        case .girlIntro:
+            ZStack(alignment: .bottom) {
+                Image(intent.prepareGirlsPhoto())
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                
+                CircularView()
+            }
+           
         }
     }
 }

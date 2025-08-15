@@ -3,15 +3,16 @@ import RouterModifier
 
 typealias OnboardingRouterTypes = RouterEvents<OnboardingRouterScreenType, OnboardingRouterAlertType>
 
-protocol OnboardingIntentProtocol { }
-
-protocol OnboardingActionProtocol {
+protocol OnboardingIntentProtocol {
     var onboardingData: OnboardingFinalModel { get }
-    
+}
+
+protocol OnboardingActionProtocol {    
     func nextStep()
     func completeOnboarding()
     func updateCommonData(for type: OnboardingFields)
-    func handleRandomName() 
+    func handleRandomName()
+    func prepareGirlsPhoto() -> String 
 }
 
 protocol OnboardingModelStatePotocol: ObservableObject {

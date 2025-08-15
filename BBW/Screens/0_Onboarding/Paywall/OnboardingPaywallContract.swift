@@ -13,13 +13,15 @@ protocol OnboardingPaywallActionProtocol {
 }
 
 protocol OnboardingPaywallModelStatePotocol: ObservableObject {
-    var data: OnboardingPaywallInputData { get set }
+    var data: OnboardingPaywallData { get set }
+    var girlImageName: String { get set }
     var prices: OnboardingPaywallPricesnData { get set }
     var isSelectedProductId: ProductsIds { get set }
 }
 
 protocol OnboardingPaywallModelActionsProtocol {
     func configurePrices(with data: OnboardingPaywallPricesnData)
+    func configureGirlImageName(with data: String)
 }
 
 

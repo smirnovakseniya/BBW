@@ -168,7 +168,7 @@ struct OnboardingAge: StepIndexable, Titled, TitledButton {
 // MARK: Selection Types
 
 // Nationality Types
-enum NationalityType {
+enum NationalityType: String {
     case european
     case asian
     case afro
@@ -192,7 +192,7 @@ struct OnboardingNationality: StepIndexable, Titled, TitledDescription {
 }
 
 // Clothing Types
-enum ClothingType {
+enum ClothingType: String {
     case casual
     case sport
     case office
@@ -343,8 +343,7 @@ struct OnboardingFinish: TitledButton, BackgroundImage {
 }
 
 // GirlIntro
-struct OnboardingGirlIntro: TitledButton, BackgroundImage {
-    let backgroundImage: String
+struct OnboardingGirlIntro: TitledButton {
     let title: String
     let emoji: String
     let list: [String]

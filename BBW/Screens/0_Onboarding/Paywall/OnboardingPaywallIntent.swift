@@ -20,6 +20,14 @@ final class OnboardingPaywallIntent: OnboardingPaywallIntentProtocol {
     }
 
     func viewOnAppear() {
+        model.configureGirlImageName(with: inputData?.girlImageName ?? Asset.Assets.imgOnboardingPaywallCircles.name)
+        preparePrice()
+    }
+}
+
+private extension OnboardingPaywallIntent {
+    
+    func preparePrice() {
         let monthlyPrice = purchasesManager.getMonthlyPrice() ?? "--"
         let monthlyPricePerDay = purchasesManager.getMonthlyPricePerDay() ?? "--"
         let weeklyPrice = purchasesManager.getWeeklyPrice() ?? "--"

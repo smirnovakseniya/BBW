@@ -23,6 +23,7 @@ struct OnboardingRouter: RouterModifierProtocol {
         switch type {
         case .paywall:
             OnboardingPaywallBuilder()
+                .set(inputData: .init(girlImageName: intent.prepareGirlsPhoto()))
                 .build()
         }
     }

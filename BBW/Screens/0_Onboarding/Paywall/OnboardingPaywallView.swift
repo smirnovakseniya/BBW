@@ -96,7 +96,7 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .background(
             ZStack {
-                Image(model.data.image)
+                Image(model.girlImageName)
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
@@ -104,6 +104,7 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
                 LinearGradient(
                     colors: [
                         Asset.Colors.fff0Fa.swiftUIColor.opacity(0),
+                        Asset.Colors.fff0Fa.swiftUIColor.opacity(0.8),
                         Asset.Colors.fff0Fa.swiftUIColor
                     ],
                     startPoint: .top,
