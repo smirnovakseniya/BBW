@@ -21,8 +21,9 @@ struct CustomProgressView: View {
                         Rectangle()
                             .foregroundStyle(customGradient)
                             .frame(width: geometry.size.width * CGFloat(progress / maxValue))
+                            .clipShape(Capsule())
                     }
-                    .cornerRadius(4)
+                    .clipShape(Capsule())
                 }
                 .frame(height: 12)
                 .clipShape(Capsule())
