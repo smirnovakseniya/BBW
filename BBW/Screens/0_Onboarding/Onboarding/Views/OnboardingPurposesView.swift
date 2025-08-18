@@ -4,14 +4,14 @@ struct OnboardingPurposesView: View {
     let model: OnboardingPurposes
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(spacing: 8) {
                 ForEach(model.list, id: \.id) { item in
                     PurposesViewCell(data: item)
                 }
             }
-            .frame(maxHeight: .infinity, alignment: .top)
         }
+        .frame(maxHeight: .infinity, alignment: .top)
     }
 }
 

@@ -110,7 +110,7 @@ struct OnboardingPaywallView<Model: OnboardingPaywallModelStatePotocol>: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
-                .padding(.top, 120)
+                .padding(.top, 200)
             }
         )
         .navigationBarBackButtonHidden()

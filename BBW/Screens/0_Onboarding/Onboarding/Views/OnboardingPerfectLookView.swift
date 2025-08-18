@@ -13,9 +13,11 @@ struct OnboardingPerfectLookView: View {
             let itemWidth = (geometry.size.width - 2 * horizontalPadding - 2 * spacing) / 3
             let itemHeight = itemWidth / aspectRatio
             
-            VStack(spacing: 80) {
+            ZStack {
                 gridView(itemWidth: itemWidth, itemHeight: itemHeight)
                     .padding(.horizontal, horizontalPadding)
+                    .padding(.top, 46)
+                    .frame(maxHeight: .infinity, alignment: .top)
                 
                 VStack(spacing: 28) {
                     Text(model.title)
@@ -24,9 +26,9 @@ struct OnboardingPerfectLookView: View {
                     
                     ContainerProgressView(data: model.progressViewTitle)
                 }
+                .padding(.bottom, 20)
+                .frame(maxHeight: .infinity, alignment: .bottom)
             }
-            .padding(.top, 46)
-            .frame(maxHeight: .infinity, alignment: .top)
         }
     }
     

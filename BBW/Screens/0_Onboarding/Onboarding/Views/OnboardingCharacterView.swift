@@ -6,10 +6,14 @@ struct OnboardingCharacterView: View {
     var onSliderValueChange: ((OnboardingCharacterData) -> ())?
     
     var body: some View {
-        VStack(spacing: 0) {
-            ForEach(model.list, id: \.id) { item in
-                CustomSlider(data: item) { value in
-                    onSliderValueChange?(.init(type: item.type, value: value))
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 0) {
+                ForEach(model.list, id: \.id) { item in
+                    CustomSlider(data: item) { value in
+                        onSliderValueChange?(
+                            .init(type: item.type, value: value)
+                        )
+                    }
                 }
             }
         }
@@ -31,18 +35,25 @@ private struct CustomSlider: View {
                 Spacer()
                 Text(data.rightTitle)
             }
-            .font(FontFamily.SFProRounded.medium.swiftUIFont(size: 18))
+            .font(
+                FontFamily.SFProRounded.medium.swiftUIFont(size: 18)
+            )
             .foregroundColor(Asset.Colors._000000.swiftUIColor)
             
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     Rectangle()
-                        .foregroundColor(Asset.Colors.fff0Fa.swiftUIColor)
+                        .foregroundColor(
+                            Asset.Colors.fff0Fa.swiftUIColor
+                        )
                         .frame(height: 16)
                         .clipShape(Capsule())
                     
                     Text(data.emoji)
-                        .font(FontFamily.SFProRounded.medium.swiftUIFont(size: 28))
+                        .font(
+                            FontFamily.SFProRounded.medium
+                                .swiftUIFont(size: 28)
+                        )
                         .padding(6)
                         .background(customGradient)
                         .clipShape(Circle())
@@ -50,7 +61,13 @@ private struct CustomSlider: View {
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
-                                    value = min(max(gesture.location.x / geometry.size.width, 0), 1)
+                                    value = min(
+                                        max(
+                                            gesture.location.x / geometry.size.width,
+                                            0
+                                        ),
+                                        1
+                                    )
                                     onSliderValueChange?(value)
                                 }
                         )

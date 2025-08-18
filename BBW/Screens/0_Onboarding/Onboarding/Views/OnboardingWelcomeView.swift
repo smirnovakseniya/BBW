@@ -17,6 +17,8 @@ struct OnboardingWelcomeView: View {
             .font(FontFamily.SFProRounded.heavy.swiftUIFont(size: 38))
         }
         .frame(maxHeight: .infinity, alignment: .top)
-        .padding(.top, 80)
+        .safeAreaInset(edge: .top) {
+            Color.clear.frame(height: 50)
+        }
     }
 }

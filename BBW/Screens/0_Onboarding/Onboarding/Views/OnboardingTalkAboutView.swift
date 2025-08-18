@@ -8,19 +8,21 @@ struct OnboardingTalkAboutView: View {
     var onCellSelecter: ((OnboardingTalkAboutCell) -> ())?
     
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 8) {
-            ForEach(model.list, id: \.id) { item in
-                TalkAboutCellView(
-                    data: item,
-                    isSelected: selectedCells.contains(item.id)
-                )
-                .onTapGesture {
-                    onCellSelecter?(item)
-                    
-                    if selectedCells.contains(item.id) {
-                        selectedCells.remove(item.id)
-                    } else {
-                        selectedCells.insert(item.id)
+        ScrollView(showsIndicators: false) {
+            LazyVGrid(columns: columns, spacing: 8) {
+                ForEach(model.list, id: \.id) { item in
+                    TalkAboutCellView(
+                        data: item,
+                        isSelected: selectedCells.contains(item.id)
+                    )
+                    .onTapGesture {
+                        onCellSelecter?(item)
+                        
+                        if selectedCells.contains(item.id) {
+                            selectedCells.remove(item.id)
+                        } else {
+                            selectedCells.insert(item.id)
+                        }
                     }
                 }
             }

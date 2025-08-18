@@ -32,7 +32,7 @@ struct CustomProgressView: View {
                     .font(FontFamily.SFProRounded.medium.swiftUIFont(size: 16))
                     .foregroundColor(Asset.Colors._000000.swiftUIColor)
                     .frame(alignment: .trailing)
-                    .frame(width: 40, alignment: .trailing)
+                    .frame(width: 50, alignment: .trailing)
             }
         }
     }
