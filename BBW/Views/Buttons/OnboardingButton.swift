@@ -9,10 +9,10 @@ struct OnboardingButton: View {
     var body: some View {
         Button(action: action) {
             Text(text)
-                .font(FontFamily.SFProRounded.semibold.swiftUIFont(size: 24))
+                .font(.sfProRoundedSemibold(size: 24))
                 .frame(maxWidth: .infinity)
                 .frame(height: 68)
-                .foregroundColor(Asset.Colors.fffdfb.swiftUIColor)
+                .foregroundColor(.FFFDFB)
                 .scaleEffect(isDisabled ? 1.0 : 1.02)
                 .background(
                     Group {
@@ -20,7 +20,7 @@ struct OnboardingButton: View {
                             Color.gray
                                 .blur(radius: 30)
                         } else {
-                            Asset.Colors._000000.swiftUIColor
+                            Color._000000
                         }
                     }
                 )
@@ -28,4 +28,12 @@ struct OnboardingButton: View {
         }
         .disabled(isDisabled)
     }
+}
+
+#Preview {
+    OnboardingButton(
+        isDisabled: false,
+        text: "asdsad",
+        action: {}
+    )
 }

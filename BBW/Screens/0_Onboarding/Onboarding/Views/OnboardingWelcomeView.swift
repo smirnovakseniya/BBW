@@ -6,19 +6,29 @@ struct OnboardingWelcomeView: View {
     var body: some View {
         VStack(spacing: 12) {
             Text(model.title1)
-                .font(FontFamily.SFProRounded.medium.swiftUIFont(size: 19))
-                .foregroundStyle(Asset.Colors._000000.swiftUIColor.opacity(0.4))
+                .font(.sfProRoundedMedium(size: 19))
+                .foregroundStyle(._000000.opacity(0.4))
             VStack {
                 Text(model.title2)
-                    .foregroundStyle(Asset.Colors._000000.swiftUIColor)
+                    .foregroundStyle(._000000)
                 Text(model.title3)
                     .foregroundStyle(customGradient)
             }
-            .font(FontFamily.SFProRounded.heavy.swiftUIFont(size: 38))
+            .font(.sfProRoundedHeavy(size: 38))
         }
         .frame(maxHeight: .infinity, alignment: .top)
-        .safeAreaInset(edge: .top) {
-            Color.clear.frame(height: 50)
-        }
+        .padding(.top, 50)
     }
+}
+
+#Preview {
+    OnboardingWelcomeView(
+        model: .init(
+            title1: "asd",
+            title2: "asd",
+            title3: "asd",
+            backgroundImage: "asd",
+            buttonTitle: "asd"
+        )
+    )
 }

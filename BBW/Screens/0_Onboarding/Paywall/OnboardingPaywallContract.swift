@@ -1,10 +1,8 @@
 import Foundation
-import RouterModifier
-
-typealias OnboardingPaywallRouterTypes = RouterEvents<OnboardingPaywallRouterScreenType, OnboardingPaywallRouterAlertType>
 
 protocol OnboardingPaywallIntentProtocol {
     func viewOnAppear()
+    func viewOnDisappear()
 }
 
 protocol OnboardingPaywallActionProtocol {

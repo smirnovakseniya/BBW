@@ -4,15 +4,11 @@ extension View {
     var customGradient: LinearGradient {
         LinearGradient(
             colors: [
-                Asset.Colors.e958Bf.swiftUIColor,
-                Asset.Colors.ff4A6E.swiftUIColor
+                .E_958_BF,
+                .FF_4_A_6_E
             ],
             startPoint: .leading,
             endPoint: .trailing
         )
-    }
-
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }

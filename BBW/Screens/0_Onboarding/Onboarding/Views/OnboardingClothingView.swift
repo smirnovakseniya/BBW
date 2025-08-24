@@ -1,9 +1,11 @@
 import SwiftUI
 
+typealias OnOnboardingClothingCell = ((OnboardingClothingCell) -> Void)?
+
 struct OnboardingClothingView: View {
     let model: OnboardingClothing
     
-    var action: ((_ type: OnboardingClothingCell) -> ())?
+    var action: OnOnboardingClothingCell
     
     var body: some View {
         ScrollView(showsIndicators: false) {

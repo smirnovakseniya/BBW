@@ -13,8 +13,8 @@ struct OnboardingFinishView: View {
             
             VStack(spacing: 28) {
                 Text(model.title)
-                    .font(FontFamily.SFProRounded.semibold.swiftUIFont(size: 30))
-                    .foregroundColor(Asset.Colors._000000.swiftUIColor)
+                    .font(.sfProRoundedSemibold(size: 30))
+                    .foregroundColor(._000000)
                 
                 ContainerProgressView(data: model.progressViewTitle)
             }

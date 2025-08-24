@@ -1,10 +1,12 @@
 import SwiftUI
 
+typealias onOnboardingPickerValueChanged = ((Int) -> Void)?
+
 struct OnboardingHeightNWeightView: View {
     let model: OnboardingHeightNWeight
     
-    let onHeightPickerValueChanged: ((Int) -> ())?
-    let onWeightPickerValueChanged: ((Int) -> ())?
+    let onHeightPickerValueChanged: onOnboardingPickerValueChanged
+    let onWeightPickerValueChanged: onOnboardingPickerValueChanged
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -12,8 +14,8 @@ struct OnboardingHeightNWeightView: View {
                 OnboardingHPickerView(
                     model: model.heightPickerData,
                     colors: [
-                        Asset.Colors.e958Bf.swiftUIColor,
-                        Asset.Colors.ff4A6E.swiftUIColor
+                        .E_958_BF,
+                        .FF_4_A_6_E
                     ]
                 ) { pickerValue in
                     onHeightPickerValueChanged?(pickerValue)
@@ -22,8 +24,8 @@ struct OnboardingHeightNWeightView: View {
                 OnboardingHPickerView(
                     model: model.weightPickerData,
                     colors: [
-                        Asset.Colors._69965B.swiftUIColor,
-                        Asset.Colors._5Ed639.swiftUIColor
+                        ._69965_B,
+                        ._5_ED_639
                     ]
                 ) { pickerValue in
                     onWeightPickerValueChanged?(pickerValue)

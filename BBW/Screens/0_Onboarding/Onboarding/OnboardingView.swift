@@ -40,12 +40,14 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
                             Circle()
                                 .fill(customGradient)
                             Text(i.description)
-                                .foregroundColor(Asset.Colors.fff0Fa.swiftUIColor)
+                                .foregroundColor(.FFF_0_FA)
+                                .font(.sfCompactRoundedBold(size: 15))
                         } else {
                             Circle()
-                                .fill(Asset.Colors.fff0Fa.swiftUIColor)
+                                .fill(.FFF_0_FA)
                             Text(i.description)
                                 .foregroundStyle(customGradient)
+                                .font(.sfCompactRoundedBold(size: 15))
                         }
                     }
                 }
@@ -91,17 +93,17 @@ struct OnboardingContainerView<Model: OnboardingModelStatePotocol>: View {
             VStack(alignment: .leading, spacing: 8) {
                 if let title {
                     Text(title)
-                        .font(FontFamily.SFProRounded.semibold.swiftUIFont(size: 30))
+                        .font(.sfProRoundedSemibold(size: 30))
                 }
                 
                 if let description {
                     Text(description)
-                        .font(FontFamily.SFProRounded.regular.swiftUIFont(size: 16))
+                        .font(.sfProRoundedRegular(size: 16))
                 }
             }
             .padding(.top, 48)
             .padding(.bottom, 36)
-            .foregroundColor(Asset.Colors._000000.swiftUIColor)
+            .foregroundColor(._000000)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }

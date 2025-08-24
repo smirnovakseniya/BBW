@@ -1,15 +1,11 @@
 import SwiftUI
+import VisualEffectView
 
 struct CircularView: View {
     
     var body: some View {
         ZStack {
-            BlurView(
-                colorTint: Asset.Colors.fffdfb.color,
-                colorTintAlpha: 0.3,
-                blurRadius: 5,
-                scale: 1
-            )
+            VisualEffect(colorTint: .FFFDFB, colorTintAlpha: 0.3, blurRadius: 5, scale: 1)
             .mask(
                 Circle()
                     .frame(width: 770, height: 770)
@@ -17,12 +13,7 @@ struct CircularView: View {
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             
-            BlurView(
-                colorTint: Asset.Colors.fffdfb.color,
-                colorTintAlpha: 0.5,
-                blurRadius: 10,
-                scale: 1
-            )
+            VisualEffect(colorTint: .FFFDFB, colorTintAlpha: 0.5, blurRadius: 10, scale: 1)
             .mask(
                 Circle()
                     .frame(width: 560, height: 560)

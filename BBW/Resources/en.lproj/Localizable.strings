@@ -116,3 +116,6 @@
 "onboarding_onboarding_paywall_privacyPolice" = "Privacy policy";
 "onboarding_onboarding_paywall_termsOfUse" = "Terms of use";
 "onboarding_onboarding_paywall_restore" = "Restore";
+//Alert
+"alert_error_title" = "Error";
+"alert_ok_button" = "Ok";

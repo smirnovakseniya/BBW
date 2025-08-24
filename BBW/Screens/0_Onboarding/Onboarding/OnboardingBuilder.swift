@@ -355,25 +355,21 @@ struct OnboardingGirlIntro: TitledButton {
 final class OnboardingBuilder {
     private var inputData: OnboardingInputData?
     
-    func build() -> some View {
-        let router = OnboardingRouterTypes()
+    func build(router: Router) -> some View {
+        let childRouter = Router()
+        let routerModifier = RouterModifier(router: childRouter)
+        
         let model = OnboardingModel()
         let intent = OnboardingIntent(
             router: router,
             model: model,
             inputData: inputData
         )
-        let routeModifier = OnboardingRouter(
-            routerEvents: router,
-            intent: intent
-        )
-        
         let view = OnboardingContainerView(
             model: model,
             intent: intent
         )
-        .modifier(routeModifier)
-        .modifier(NavigationModifiers())
+        .modifier(routerModifier)
         
         return view
     }

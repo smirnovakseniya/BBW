@@ -1,9 +1,11 @@
 import SwiftUI
 
+typealias OnOnboardingNationalityCell = ((OnboardingNationalityCell) -> Void)?
+
 struct OnboardingNationalityView: View {
     let model: OnboardingNationality
     
-    var action: ((_ type: OnboardingNationalityCell) -> ())?
+    var action: OnOnboardingNationalityCell
     
     var body: some View {
         ScrollView(showsIndicators: false) {

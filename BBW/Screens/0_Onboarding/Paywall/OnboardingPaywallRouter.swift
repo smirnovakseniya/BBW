@@ -1,50 +1,21 @@
 import SwiftUI
-import RouterModifier
+import Combine
 
-enum OnboardingPaywallRouterScreenType: RouterScreenProtocol { }
-
-enum OnboardingPaywallRouterAlertType: RouterAlertScreenProtocol {
-    case failed(error: String)
+final class OnboardingPaywallRouter: ObservableObject {
+    private(set) var dismissSubject: PassthroughSubject<Void, Never> = .init()
+    private(set) var navigationSubject: PassthroughSubject<NavigationAction, Never> = .init()
+    private(set) var presentationSubject: PassthroughSubject<ModalPresentationAction, Never> = .init()
     
-    var title: String {
-        switch self {
-        case .failed:
-            return "Failed"
-        }
+    func navigate(_ action: NavigationAction) {
+        navigationSubject.send(action)
     }
     
-    var message: String {
-        switch self {
-        case .failed(let errorMessage):
-            return errorMessage
-        }
+    func present(_ action: ModalPresentationAction) {
+        presentationSubject.send(action)
+    }
+    
+    func dismiss() {
+        dismissSubject.send()
     }
 }
 
-struct OnboardingPaywallRouter: RouterModifierProtocol {
-    
-    let routerEvents: OnboardingPaywallRouterTypes
-    private let intent: OnboardingPaywallIntentProtocol
-    
-    init(
-        routerEvents: OnboardingPaywallRouterTypes,
-        intent: OnboardingPaywallIntentProtocol
-    ) {
-        self.routerEvents = routerEvents
-        self.intent = intent
-    }
-    
-    // MARK: Alert Methods
-    
-    func getAlertTitle(for type: OnboardingPaywallRouterAlertType) -> Text? {
-        return Text(type.title)
-    }
-    
-    func getAlertMessage(for type: OnboardingPaywallRouterAlertType) -> Text {
-        return Text(type.message)
-    }
-    
-    func getAlertActions(for type: OnboardingPaywallRouterAlertType) -> Button<Text> {
-        return Button("Close", role: .cancel) { }
-    }
-}

@@ -1,16 +1,15 @@
 import Foundation
-import RouterModifier
 
 final class OnboardingPaywallIntent: OnboardingPaywallIntentProtocol {
-    @InjectedObject(\.appStateManager) var appStateManager: AppStateManager
     @Injected(\.purchasesManager) var purchasesManager: PurchasesManager
+    @InjectedObject(\.appStateManager) var appStateManager
     
-    private let router: OnboardingPaywallRouterTypes
+    private let router: Router
     private let model: any OnboardingPaywallModelActionsProtocol & OnboardingPaywallModelStatePotocol
     private let inputData: OnboardingPaywallInputData?
     
     init(
-        router: OnboardingPaywallRouterTypes,
+        router: Router,
         model: any OnboardingPaywallModelActionsProtocol & OnboardingPaywallModelStatePotocol,
         inputData: OnboardingPaywallInputData?
     ) {
@@ -22,6 +21,10 @@ final class OnboardingPaywallIntent: OnboardingPaywallIntentProtocol {
     func viewOnAppear() {
         model.configureGirlImageName(with: inputData?.girlImageName ?? Asset.Assets.imgOnboardingPaywallCircles.name)
         preparePrice()
+    }
+    
+    func viewOnDisappear() {
+        appStateManager.completeOnboarding()
     }
 }
 
@@ -51,7 +54,8 @@ private extension OnboardingPaywallIntent {
 extension OnboardingPaywallIntent: OnboardingPaywallActionProtocol {
     
     func onDismiss() {
-        appStateManager.completeOnboarding()
+        router.navigate(.popToRoot)
+        router.navigate(.push(screen: .main(0)))
     }
     
     func onPurchaseButtonTap() {
@@ -63,7 +67,7 @@ extension OnboardingPaywallIntent: OnboardingPaywallActionProtocol {
                 onDismiss()
                 
             case .failure(let error):
-                router.presentAlert(.failed(error: error.localizedDescription))
+                router.showErrorAlert(message: error.localizedDescription)
             }
         }
     }
@@ -71,7 +75,7 @@ extension OnboardingPaywallIntent: OnboardingPaywallActionProtocol {
 
 extension OnboardingPaywallIntent: MoreInfoActionProtocol {
     
-    func onRestoreButtonTappred() {
+    func onRestoreButtonTapped() {
         purchasesManager.restorePurchases { [weak self] result in
             guard let self else { return }
             
@@ -80,7 +84,7 @@ extension OnboardingPaywallIntent: MoreInfoActionProtocol {
                 onDismiss()
                 
             case .failure(let error):
-                router.presentAlert(.failed(error: error.localizedDescription))
+                router.showErrorAlert(message: error.localizedDescription)
             }
         }
     }

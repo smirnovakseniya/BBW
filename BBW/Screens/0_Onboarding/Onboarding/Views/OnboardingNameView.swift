@@ -1,13 +1,15 @@
 import SwiftUI
 
+typealias OnOnboardingName = ((String) -> Void)?
+
 struct OnboardingNameView: View {
     @State private var localText: String
     
     let name: String
     let placeholder: String
-    var action: ((_ name: String) -> Void)?
+    var action: OnOnboardingName
     
-    init(model: OnboardingName, action: @escaping ((String) -> Void)) {
+    init(model: OnboardingName, action: OnOnboardingName) {
         self.placeholder = model.placeholder
         self.action = action
         self._localText = State(initialValue: model.text)
@@ -16,13 +18,13 @@ struct OnboardingNameView: View {
     
     var body: some View {
         TextField(placeholder, text: $localText)
-            .foregroundColor(Asset.Colors._000000.swiftUIColor)
-            .font(FontFamily.SFProRounded.medium.swiftUIFont(size: 24))
+            .foregroundColor(._000000)
+            .font(.sfProRoundedMedium(size: 24))
             .padding(.horizontal, 24)
             .frame(height: 64)
             .background(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Asset.Colors.fff0Fa.swiftUIColor)
+                    .fill(.FFF_0_FA)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 20)

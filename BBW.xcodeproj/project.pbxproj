@@ -7,33 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F20412F32E44A0310068B8AE /* RouterModifier in Frameworks */ = {isa = PBXBuildFile; productRef = F20412F22E44A0310068B8AE /* RouterModifier */; };
 		F2615FBE2E49016C00EBE138 /* VisualEffectView in Frameworks */ = {isa = PBXBuildFile; productRef = F2615FBD2E49016C00EBE138 /* VisualEffectView */; };
 		F26160972E49192A00EBE138 /* VisualEffectView in Frameworks */ = {isa = PBXBuildFile; productRef = F26160962E49192A00EBE138 /* VisualEffectView */; };
+		F26BBD912E5AFCA40067D354 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = F26BBD902E5AFCA40067D354 /* SwiftyStoreKit */; };
 		F2D2D1F42E477A6F00334AC2 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2D2D1F32E477A6F00334AC2 /* swiftgen.yml */; };
+		F9A68304F4582A53FB5001CA /* Pods_BBW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD0764E150D124843B833E4 /* Pods_BBW.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DFA0E5FDBB9D12ACED2F4FC /* Pods-BBW.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BBW.debug.xcconfig"; path = "Target Support Files/Pods-BBW/Pods-BBW.debug.xcconfig"; sourceTree = "<group>"; };
+		8BD0764E150D124843B833E4 /* Pods_BBW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BBW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCA24ACDD3482A7FC959C990 /* Pods-BBW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BBW.release.xcconfig"; path = "Target Support Files/Pods-BBW/Pods-BBW.release.xcconfig"; sourceTree = "<group>"; };
 		F278C3302E449B3400A351A1 /* BBW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D2D1F32E477A6F00334AC2 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F20412F02E44A0290068B8AE /* Exceptions for "BBW" folder in "BBW" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				RouterModifier,
-			);
-			target = F278C32F2E449B3400A351A1 /* BBW */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F278C3322E449B3400A351A1 /* BBW */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				F20412F02E44A0290068B8AE /* Exceptions for "BBW" folder in "BBW" target */,
-			);
 			path = BBW;
 			sourceTree = "<group>";
 		};
@@ -46,16 +37,27 @@
 			files = (
 				F2615FBE2E49016C00EBE138 /* VisualEffectView in Frameworks */,
 				F26160972E49192A00EBE138 /* VisualEffectView in Frameworks */,
-				F20412F32E44A0310068B8AE /* RouterModifier in Frameworks */,
+				F26BBD912E5AFCA40067D354 /* SwiftyStoreKit in Frameworks */,
+				F9A68304F4582A53FB5001CA /* Pods_BBW.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48EFF3011EBE4E44A7D05CE9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2DFA0E5FDBB9D12ACED2F4FC /* Pods-BBW.debug.xcconfig */,
+				BCA24ACDD3482A7FC959C990 /* Pods-BBW.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F20412F12E44A0310068B8AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BD0764E150D124843B833E4 /* Pods_BBW.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -67,6 +69,7 @@
 				F278C3322E449B3400A351A1 /* BBW */,
 				F20412F12E44A0310068B8AE /* Frameworks */,
 				F278C3312E449B3400A351A1 /* Products */,
+				48EFF3011EBE4E44A7D05CE9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,10 +88,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F278C33B2E449B3800A351A1 /* Build configuration list for PBXNativeTarget "BBW" */;
 			buildPhases = (
+				E85BA85CFC6CCAB218F588CE /* [CP] Check Pods Manifest.lock */,
+				F2D2D1FA2E477EAE00334AC2 /* ShellScript */,
 				F278C32C2E449B3400A351A1 /* Sources */,
 				F278C32D2E449B3400A351A1 /* Frameworks */,
 				F278C32E2E449B3400A351A1 /* Resources */,
-				F2D2D1FA2E477EAE00334AC2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -99,9 +103,9 @@
 			);
 			name = BBW;
 			packageProductDependencies = (
-				F20412F22E44A0310068B8AE /* RouterModifier */,
 				F2615FBD2E49016C00EBE138 /* VisualEffectView */,
 				F26160962E49192A00EBE138 /* VisualEffectView */,
+				F26BBD902E5AFCA40067D354 /* SwiftyStoreKit */,
 			);
 			productName = BBW;
 			productReference = F278C3302E449B3400A351A1 /* BBW.app */;
@@ -144,6 +148,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				F26160952E49192A00EBE138 /* XCRemoteSwiftPackageReference "VisualEffectView" */,
+				F26BBD8F2E5AFCA40067D354 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F278C3312E449B3400A351A1 /* Products */;
@@ -167,6 +172,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		E85BA85CFC6CCAB218F588CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BBW-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F2D2D1FA2E477EAE00334AC2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -182,7 +209,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" \nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n\n";
+			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\"\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -320,6 +347,7 @@
 		};
 		F278C33C2E449B3800A351A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DFA0E5FDBB9D12ACED2F4FC /* Pods-BBW.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -327,6 +355,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2465ZH8J2R;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -352,6 +381,7 @@
 		};
 		F278C33D2E449B3800A351A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCA24ACDD3482A7FC959C990 /* Pods-BBW.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -359,6 +389,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2465ZH8J2R;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -414,13 +445,17 @@
 				minimumVersion = 5.0.3;
 			};
 		};
+		F26BBD8F2E5AFCA40067D354 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F20412F22E44A0310068B8AE /* RouterModifier */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RouterModifier;
-		};
 		F2615FBD2E49016C00EBE138 /* VisualEffectView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = VisualEffectView;
@@ -429,6 +464,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F26160952E49192A00EBE138 /* XCRemoteSwiftPackageReference "VisualEffectView" */;
 			productName = VisualEffectView;
+		};
+		F26BBD902E5AFCA40067D354 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F26BBD8F2E5AFCA40067D354 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

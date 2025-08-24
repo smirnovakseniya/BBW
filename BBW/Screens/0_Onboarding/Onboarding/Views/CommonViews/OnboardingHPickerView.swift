@@ -29,11 +29,8 @@ struct OnboardingHPickerView: View {
                     LazyHStack(spacing: 20) {
                         ForEach(Array(stride(from: model.minValue, through: model.maxValue, by: model.step)), id: \.self) { value in
                             Text("\(value)")
-                                .font(FontFamily.SFProRounded.semibold.swiftUIFont(size: 70))
-                                .foregroundStyle(value == selectedValue
-                                                 ? Asset.Colors.fffdfb.swiftUIColor
-                                                 : Asset.Colors.fffdfb.swiftUIColor.opacity(0.3)
-                                )
+                                .font(.sfProRoundedSemibold(size: 70))
+                                .foregroundStyle(value == selectedValue ? .FFFDFB : .FFFDFB.opacity(0.3))
                                 .animation(.spring(response: 0.3), value: selectedValue)
                                 .id(value)
                                 .background(
@@ -97,7 +94,7 @@ struct OnboardingHPickerView: View {
             }
             
             Triangle()
-                .fill(Asset.Colors.fffdfb.swiftUIColor)
+                .fill(.FFFDFB)
                 .frame(width: 68, height: 20)
                 .frame(maxHeight: .infinity, alignment: .bottom)
         }

@@ -1,5 +1,4 @@
 import SwiftUI
-import RouterModifier
 
 struct MainView<Model: MainModelStatePotocol>: View {
     

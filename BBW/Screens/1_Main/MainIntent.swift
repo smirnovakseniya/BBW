@@ -1,14 +1,13 @@
 import Foundation
-import RouterModifier
 
 final class MainIntent: MainIntentProtocol {
     
-    private let router: MainRouterTypes
+    private let router: Router
     private let model: MainModelActionsProtocol
     private let inputData: MainInputData?
     
     init(
-        router: MainRouterTypes,
+        router: Router,
         model: MainModelActionsProtocol,
         inputData: MainInputData?
     ) {

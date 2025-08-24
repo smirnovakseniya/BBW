@@ -8,29 +8,25 @@ struct CustomProgressView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
-                .font(FontFamily.SFProRounded.medium.swiftUIFont(size: 16))
-                .foregroundColor(Asset.Colors._000000.swiftUIColor)
+                .font(.sfProRoundedMedium(size: 16))
+                .foregroundColor(._000000)
                 .padding(.horizontal, 8)
             
             HStack(spacing: 12) {
-                GeometryReader { geometry in
-                    ZStack(alignment: .leading) {
-                        Rectangle()
-                            .foregroundColor(Asset.Colors.fffdfb.swiftUIColor)
-                        
-                        Rectangle()
-                            .foregroundStyle(customGradient)
-                            .frame(width: geometry.size.width * CGFloat(progress / maxValue))
-                            .clipShape(Capsule())
+                Capsule()
+                    .fill(.FFFDFB)
+                    .overlay(alignment: .leading) {
+                        GeometryReader { geometry in
+                            Capsule()
+                                .foregroundStyle(customGradient)
+                                .frame(width: geometry.size.width * CGFloat(progress / maxValue))
+                        }
                     }
-                    .clipShape(Capsule())
-                }
-                .frame(height: 12)
-                .clipShape(Capsule())
+                    .frame(height: 12.0)
                 
                 AnimatedNumberText(value: progress)
-                    .font(FontFamily.SFProRounded.medium.swiftUIFont(size: 16))
-                    .foregroundColor(Asset.Colors._000000.swiftUIColor)
+                    .font(.sfProRoundedMedium(size: 16))
+                    .foregroundColor(._000000)
                     .frame(alignment: .trailing)
                     .frame(width: 50, alignment: .trailing)
             }
@@ -49,4 +45,12 @@ struct AnimatedNumberText: View, Animatable {
     var body: some View {
         Text("\(Int(value))%")
     }
+}
+
+#Preview {
+    CustomProgressView(
+        title: "asdasd",
+        progress: 5,
+        maxValue: 10
+    )
 }

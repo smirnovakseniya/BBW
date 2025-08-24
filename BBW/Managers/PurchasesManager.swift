@@ -1,5 +1,6 @@
 import Foundation
 import StoreKit
+import SwiftyStoreKit
 
 public enum ProductsIds: String, CaseIterable {
     case week = "BBW.com.week"
@@ -10,69 +11,150 @@ public enum ProductsIds: String, CaseIterable {
     }
 }
 
-final class PurchasesManager: NSObject {
+final class PurchasesManager {
     
     // MARK: - Shared Instance
     static let shared = PurchasesManager()
     
     // MARK: - Properties
     private var products = [SKProduct]()
-    private var productsRequest: SKProductsRequest?
-    private var productsCompletion: ((Result<[SKProduct], Error>) -> Void)?
-    private var purchaseCompletion: ((Result<Bool, Error>) -> Void)?
-    private var restoreCompletion: ((Result<Bool, Error>) -> Void)?
     
     // MARK: - Initialization
-    private override init() {
-        super.init()
-        SKPaymentQueue.default().add(self)
+    private init() {
+        setupCompleteTransactions()
     }
     
-    deinit {
-        SKPaymentQueue.default().remove(self)
+    // MARK: - Setup
+    private func setupCompleteTransactions() {
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                case .failed, .purchasing, .deferred:
+                    break
+                @unknown default:
+                    break
+                }
+            }
+        }
     }
     
     // MARK: - Product Fetching
     public func fetchProducts(completion: @escaping (Result<[SKProduct], Error>) -> Void) {
-        DispatchQueue.main.async {
-            self.productsRequest?.cancel()
-            self.productsCompletion = completion
+        SwiftyStoreKit.retrieveProductsInfo(ProductsIds.identifiers) { result in
+            if result.error != nil {
+                completion(.failure(result.error!))
+                return
+            }
             
-            let request = SKProductsRequest(productIdentifiers: ProductsIds.identifiers)
-            request.delegate = self
-            self.productsRequest = request
-            request.start()
+            let products = Array(result.retrievedProducts) + Array(result.invalidProductIDs.map { productID in
+                let product = SKProduct()
+                product.setValue(productID, forKey: "productIdentifier")
+                return product
+            })
+            
+            self.products = products
+            completion(.success(products))
         }
     }
     
     // MARK: - Purchase
-    public func purchase(product: ProductsIds, completion: @escaping (Result<Bool, Error>) -> Void) {
-        DispatchQueue.main.async {
-            guard SKPaymentQueue.canMakePayments() else {
-                completion(.failure(PurchaseError.paymentsNotAllowed))
-                return
+    public func purchase(product: ProductsIds, completion: @escaping (Result<PurchaseDetails, Error>) -> Void) {
+        SwiftyStoreKit.purchaseProduct(product.rawValue, quantity: 1, atomically: true) { result in
+            switch result {
+            case .success(let purchase):
+                completion(.success(purchase))
+            case .error(let error):
+                completion(.failure(error))
+            case .deferred:
+                completion(.failure(PurchaseError.purchaseDeferred))
             }
-            
-            guard let productToPurchase = self.products.first(where: { $0.productIdentifier == product.rawValue }) else {
-                completion(.failure(PurchaseError.productNotFound))
-                return
-            }
-            
-            self.purchaseCompletion = completion
-            let paymentRequest = SKPayment(product: productToPurchase)
-            SKPaymentQueue.default().add(paymentRequest)
         }
     }
     
     // MARK: - Restore Purchases
-    public func restorePurchases(completion: @escaping (Result<Bool, Error>) -> Void) {
-        DispatchQueue.main.async {
-            self.restoreCompletion = completion
-            SKPaymentQueue.default().restoreCompletedTransactions()
+    public func restorePurchases(completion: @escaping (Result<[Purchase], Error>) -> Void) {
+        SwiftyStoreKit.restorePurchases(atomically: true) { results in
+            if results.restoreFailedPurchases.count > 0 {
+                completion(.failure(PurchaseError.restoreFailed))
+            } else if results.restoredPurchases.count > 0 {
+                completion(.success(results.restoredPurchases))
+            } else {
+                completion(.failure(PurchaseError.noPurchasesToRestore))
+            }
         }
     }
     
-    // MARK: - Price Formatting
+    // MARK: - Verify Receipt and Purchases
+    public func verifyPurchase(product: ProductsIds, completion: @escaping (Result<VerifyPurchaseResult, Error>) -> Void) {
+        let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: nil)
+        SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
+            switch result {
+            case .success(let receipt):
+                let purchaseResult = SwiftyStoreKit.verifyPurchase(
+                    productId: product.rawValue,
+                    inReceipt: receipt
+                )
+                completion(.success(purchaseResult))
+            case .error(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Check Active Subscription
+    public func checkActiveSubscription(completion: @escaping (Result<Bool, Error>) -> Void) {
+        let group = DispatchGroup()
+        var isActive = false
+        
+        for product in ProductsIds.allCases {
+            group.enter()
+            verifySubscription(product: product) { result in
+                switch result {
+                case .success(let subscriptionResult):
+                    switch subscriptionResult {
+                    case .purchased(let expiryDate, _):
+                        if expiryDate > Date() {
+                            isActive = true
+                        }
+                    case .expired, .notPurchased:
+                        break
+                    }
+                case .failure:
+                    break
+                }
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completion(.success(isActive))
+        }
+    }
+    
+    // MARK: - Verify Subscription
+    public func verifySubscription(product: ProductsIds, completion: @escaping (Result<VerifySubscriptionResult, Error>) -> Void) {
+        let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: nil)
+        
+        SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
+            switch result {
+            case .success(let receipt):
+                let subscriptionResult = SwiftyStoreKit.verifySubscription(
+                    ofType: .autoRenewable,
+                    productId: product.rawValue,
+                    inReceipt: receipt
+                )
+                completion(.success(subscriptionResult))
+            case .error(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Price Formatting (сохраняем существующий функционал)
     public func formattedPrice(for productId: ProductsIds) -> String? {
         guard let product = products.first(where: { $0.productIdentifier == productId.rawValue }) else {
             return nil
@@ -117,92 +199,10 @@ final class PurchasesManager: NSObject {
     }
     
     // MARK: - Error Handling
-    
     private enum PurchaseError: Error {
-        case paymentsNotAllowed
-        case productNotFound
-        case purchaseFailed
+        case purchaseDeferred
         case restoreFailed
-    }
-}
-
-// MARK: - SKProductsRequestDelegate
-extension PurchasesManager: SKProductsRequestDelegate {
-    
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        DispatchQueue.main.async {
-            self.products = response.products
-            self.productsCompletion?(.success(response.products))
-            self.productsCompletion = nil
-        }
-    }
-    
-    func request(_ request: SKRequest, didFailWithError error: Error) {
-        DispatchQueue.main.async {
-            self.productsCompletion?(.failure(error))
-            self.productsCompletion = nil
-        }
-    }
-}
-
-// MARK: - SKPaymentTransactionObserver
-extension PurchasesManager: SKPaymentTransactionObserver {
-    
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        DispatchQueue.main.async {
-            for transaction in transactions {
-                switch transaction.transactionState {
-                case .purchased:
-                    self.handlePurchaseSuccess(transaction)
-                    
-                case .restored:
-                    self.handleRestoreSuccess(transaction)
-                    
-                case .failed:
-                    self.handleFailure(transaction)
-                    
-                case .deferred, .purchasing:
-                    break
-                    
-                @unknown default:
-                    break
-                }
-            }
-        }
-    }
-    
-    private func handlePurchaseSuccess(_ transaction: SKPaymentTransaction) {
-        purchaseCompletion?(.success(true))
-        purchaseCompletion = nil
-        SKPaymentQueue.default().finishTransaction(transaction)
-    }
-    
-    private func handleRestoreSuccess(_ transaction: SKPaymentTransaction) {
-        restoreCompletion?(.success(true))
-        restoreCompletion = nil
-        SKPaymentQueue.default().finishTransaction(transaction)
-    }
-    
-    private func handleFailure(_ transaction: SKPaymentTransaction) {
-        if let error = transaction.error as? SKError {
-            if error.code != .paymentCancelled {
-                purchaseCompletion?(.failure(error))
-                restoreCompletion?(.failure(error))
-            }
-        }
-        purchaseCompletion = nil
-        restoreCompletion = nil
-        SKPaymentQueue.default().finishTransaction(transaction)
-    }
-    
-    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        restoreCompletion?(.success(true))
-        restoreCompletion = nil
-    }
-    
-    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        restoreCompletion?(.failure(error))
-        restoreCompletion = nil
+        case noPurchasesToRestore
     }
 }
 
@@ -210,12 +210,58 @@ extension PurchasesManager: SKPaymentTransactionObserver {
 extension PurchasesManager {
     
     func configureForAppLaunch() {
+        // Настройка наблюдения за транзакциями
+        setupCompleteTransactions()
+        
+        // Автоматическое обновление receipt
+        SwiftyStoreKit.shouldAddStorePaymentHandler = { payment, product in
+            return true
+        }
+        
+        // Загрузка продуктов при запуске
         fetchProducts { result in
             switch result {
             case .success(let products):
                 print("Successfully loaded \(products.count) products")
             case .failure(let error):
                 print("Failed to load products: \(error.localizedDescription)")
+            }
+        }
+    }
+}
+
+// MARK: - Упрощенные методы для быстрого использования
+extension PurchasesManager {
+    
+    func purchaseWeekly(completion: @escaping (Bool) -> Void) {
+        purchase(product: .week) { result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
+            }
+        }
+    }
+    
+    func purchaseMonthly(completion: @escaping (Bool) -> Void) {
+        purchase(product: .month) { result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
+            }
+        }
+    }
+    
+    func isSubscribed(completion: @escaping (Bool) -> Void) {
+        checkActiveSubscription { result in
+            switch result {
+            case .success(let isActive):
+                completion(isActive)
+            case .failure:
+                completion(false)
             }
         }
     }

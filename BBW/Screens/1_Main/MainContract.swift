@@ -1,7 +1,4 @@
 import Foundation
-import RouterModifier
-
-typealias MainRouterTypes = RouterEvents<MainRouterScreenType, MainRouterAlertType>
 
 protocol MainIntentProtocol {
     func viewOnAppear()

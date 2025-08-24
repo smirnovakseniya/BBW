@@ -15,12 +15,44 @@ struct GradientButton: View {
                     Label(text, image: "")
                 }
             }
-            .font(FontFamily.SFProRounded.semibold.swiftUIFont(size: 24))
+            .font(.sfProRoundedSemibold(size: 24))
             .frame(maxWidth: .infinity)
             .frame(height: 68)
-            .foregroundColor(Asset.Colors.fffdfb.swiftUIColor)
+            .foregroundColor(.FFFDFB)
             .background(customGradient)
             .clipShape(Capsule())
         }
     }
+}
+
+struct TempLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration
+            .title
+            .font(.sfProRoundedSemibold(size: 24))
+            .frame(maxWidth: .infinity)
+            .frame(height: 68)
+            .foregroundColor(.FFFDFB)
+            .clipShape(Capsule())
+    }
+}
+
+struct TempButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration
+            .label
+            .font(.sfProRoundedSemibold(size: 24))
+            .frame(maxWidth: .infinity)
+            .frame(height: 68)
+            .foregroundColor(.FFFDFB)
+            .clipShape(Capsule())
+    }
+}
+
+#Preview {
+    GradientButton(
+        text: "asd",
+        image: "",
+        action: {}
+    )
 }

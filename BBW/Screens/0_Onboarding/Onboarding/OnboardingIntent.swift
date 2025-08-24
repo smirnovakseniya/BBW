@@ -1,15 +1,14 @@
 import Foundation
-import RouterModifier
 
 final class OnboardingIntent {
     
-    private let router: OnboardingRouterTypes
+    private let router: Router
     private let model: OnboardingModelActionsProtocol
     private let inputData: OnboardingInputData?
     
     var onboardingData = OnboardingFinalModel()
     
-    init(router: OnboardingRouterTypes, model: OnboardingModelActionsProtocol, inputData: OnboardingInputData?) {
+    init(router: Router, model: OnboardingModelActionsProtocol, inputData: OnboardingInputData?) {
         self.router = router
         self.model = model
         self.inputData = inputData
@@ -62,7 +61,7 @@ extension OnboardingIntent: OnboardingActionProtocol {
     }
     
     func completeOnboarding() {
-        router.routeTo(.paywall)
+        router.navigate(.push(screen: .onboarding(.paywall)))
     }
     
     

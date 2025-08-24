@@ -1,7 +1,4 @@
 import Foundation
-import RouterModifier
-
-typealias OnboardingRouterTypes = RouterEvents<OnboardingRouterScreenType, OnboardingRouterAlertType>
 
 protocol OnboardingIntentProtocol {
     var onboardingData: OnboardingFinalModel { get }

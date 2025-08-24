@@ -8,12 +8,12 @@ final class AppStateManager: ObservableObject {
     init(userDefaults: UserDefaultsManager) {
         self.userDefaults = userDefaults
         
-        let isCompletedOnboarding = userDefaults.load(forKey: .isCompletedOnboarding) as Bool?
+        let isCompletedOnboarding = userDefaults.isCompletedOnboarding
         currentState = isCompletedOnboarding == true ? .main : .onboarding
     }
     
     func completeOnboarding() {
         currentState = .main
-//        userDefaults.save(true, forKey: .isCompletedOnboarding) //MARK: TODO KS 
+//        userDefaults.isCompletedOnboarding = true //MARK: TODO KS
     }
 }

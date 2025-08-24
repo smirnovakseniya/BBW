@@ -55,23 +55,17 @@ final class OnboardingPaywallBuilder {
         return self
     }
     
-    func build() -> some View {
-        let router = OnboardingPaywallRouterTypes()
+    func build(router: Router) -> some View {
         let model = OnboardingPaywallModel()
         let intent = OnboardingPaywallIntent(
             router: router,
             model: model,
             inputData: inputData
         )
-        let routeModifier = OnboardingPaywallRouter(
-            routerEvents: router,
-            intent: intent
-        )
         let view = OnboardingPaywallView(
             model: model,
             intent: intent
         )
-            .modifier(routeModifier)
         return view
     }
 }

@@ -1,5 +1,7 @@
 import SwiftUI
 
+typealias OnOnboardingBestPhotoCell = ((OnboardingBestPhotoCell) -> Void)?
+
 struct OnboardingBestPhotoView: View {
     var model: [OnboardingBestPhotoCell]
     
@@ -7,7 +9,7 @@ struct OnboardingBestPhotoView: View {
     @State private var draggingItem = 0.0
     @State private var activeIndex: Int = 0
     
-    let onValueChanged: ((OnboardingBestPhotoCell) -> ())?
+    let onValueChanged: OnOnboardingBestPhotoCell
     
     var body: some View {
         GeometryReader { geo in

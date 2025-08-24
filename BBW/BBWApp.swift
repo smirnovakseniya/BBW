@@ -11,26 +11,12 @@ struct BBWApp: App {
     
     var body: some Scene {
         WindowGroup {
-            switch appStateManager.currentState {
-            case .onboarding:
-                OnboardingBuilder()
-                    .build()
-            case .main:
-                MainBuilder()
-                    .build()
-            }
+            AppScreen.rootView(currentState: appStateManager.currentState)
         }
     }
     
     func configureManagers() {
         purchasesManager.configureForAppLaunch()
-    }
-}
-
-
-struct NavigationModifiers: ViewModifier {
-    func body(content: Content) -> some View {
-        NavigationStack { content }
     }
 }
 
